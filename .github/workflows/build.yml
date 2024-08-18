@@ -1,0 +1,21 @@
+name: Test Build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-build:
+    runs-on: [self-hosted, Linux, X64, ubuntu-latest-lts]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set PATH for pipx binaries
+        run: echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
