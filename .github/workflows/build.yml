@@ -21,7 +21,7 @@ jobs:
           nvm use node
 
       - name: Source environment variables
-        run: source /srv/portfolio/.env
+        run: sudo cp /srv/portfolio/.env ./
 
       - name: Install pnpm
         run: sudo npm install -g pnpm
