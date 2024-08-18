@@ -11,7 +11,7 @@ export type RelatedPostsProps = {
   blockType: 'relatedPosts'
   blockName: string
   introContent?: any
-  docs?: (string | Post | Project)[]
+  docs?: (string | number | Post | Project)[]
   relationTo: 'posts' | 'projects'
 }
 
@@ -41,7 +41,9 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = props => {
                   .filter(Boolean)
                   .join(' ')}
               >
-                <Card relationTo={relationTo} doc={doc} showCategories />
+                {typeof doc !== 'number' && (
+                  <Card relationTo={relationTo} doc={doc} showCategories />
+                )}
               </div>
             )
           })}

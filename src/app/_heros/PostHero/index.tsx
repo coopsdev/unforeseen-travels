@@ -92,9 +92,12 @@ export const PostHero: React.FC<{
               <Media imgClassName={classes.image} resource={metaImage} fill />
             )}
           </div>
-          {metaImage && typeof metaImage !== 'string' && metaImage?.caption && (
-            <RichText content={metaImage.caption} className={classes.caption} />
-          )}
+          {metaImage &&
+            typeof metaImage !== 'string' &&
+            typeof metaImage !== 'number' &&
+            metaImage?.caption && (
+              <RichText content={metaImage.caption} className={classes.caption} />
+            )}
         </div>
       </Gutter>
     </Fragment>

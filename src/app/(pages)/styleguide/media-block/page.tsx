@@ -20,13 +20,18 @@ export default async function MediaBlockPage() {
         <h1>Media Block</h1>
       </Gutter>
       <VerticalPadding bottom="large" top="none">
-        <MediaBlock position="default" blockType="mediaBlock" media="" staticImage={staticImage} />
+        <MediaBlock
+          position="default"
+          blockType="mediaBlock"
+          media={-1}
+          staticImage={staticImage}
+        />
         <br />
         <br />
         <MediaBlock
           position="fullscreen"
           blockType="mediaBlock"
-          media=""
+          media={-1}
           staticImage={staticImage}
         />
       </VerticalPadding>

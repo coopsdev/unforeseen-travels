@@ -13,7 +13,7 @@ import { Pagination } from '../Pagination'
 import classes from './index.module.scss'
 
 type Result = {
-  docs: (Post | Project | string)[]
+  docs: (Post | Project | string | number)[]
   hasNextPage: boolean
   hasPrevPage: boolean
   nextPage: number

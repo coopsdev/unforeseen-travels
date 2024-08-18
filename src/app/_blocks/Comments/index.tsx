@@ -81,7 +81,7 @@ export const CommentsBlock: React.FC<CommentsBlockProps> = props => {
             )
           })}
           <HR />
-          <CommentForm docID={doc.id} />
+          <CommentForm docID={String(doc.id)} />
         </div>
       </Gutter>
     </div>

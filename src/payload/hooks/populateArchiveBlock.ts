@@ -7,8 +7,7 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, context, req })
   // pre-populate the archive block if `populateBy` is `collection`
   // then hydrate it on your front-end
   const payload = req.payload
-  const adminOrPublishedResult = await adminsOrPublished({ req: req })
-  const adminOrPublishedQuery = adminOrPublishedResult
+  const adminOrPublishedQuery = await adminsOrPublished({ req: req })
 
   const layoutWithArchive = await Promise.all(
     doc.layout.map(async block => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Metadata } from 'next'
 
 import { Gutter } from '../../_components/Gutter'
@@ -12,7 +12,9 @@ export default async function ResetPassword() {
     <Gutter className={classes.resetPassword}>
       <h1>Reset Password</h1>
       <p>Please enter a new password below.</p>
-      <ResetPasswordForm />
+      <Suspense fallback={<div>loading...</div>}>
+        <ResetPasswordForm />
+      </Suspense>
     </Gutter>
   )
 }
