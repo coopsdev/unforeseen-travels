@@ -29,7 +29,10 @@ jobs:
           nvm use node
 
       - name: Source environment variables
-        run: sudo cp /srv/portfolio/.env ./
+        run: |
+          sudo cp /srv/portfolio/.env ./
+          sed -i 's/^PORT=.*/PORT=3300/' .env
+          source .env
 
       - name: Install pnpm
         run: sudo npm install -g pnpm
