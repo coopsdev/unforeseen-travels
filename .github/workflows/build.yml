@@ -20,6 +20,9 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm use node
 
+      - name: Source environment variables
+        run: source /srv/portfolio/.env
+
       - name: Install pnpm
         run: sudo npm install -g pnpm
 
