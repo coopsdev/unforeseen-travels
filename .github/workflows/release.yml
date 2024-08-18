@@ -46,8 +46,13 @@ jobs:
       - name: Publish Executable
         run: |
           sudo systemctl stop portfolio
-          sudo find /srv/portfolio/ -mindepth 1 ! -name 'media' ! -name '.env' -exec rm -rf {} +
-          sudo rsync -av --exclude 'media' --exclude '.env' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
+
+          # Corrected find command with additional exclusions
+          sudo find /srv/portfolio/ -mindepth 1 ! -name 'media' ! -name '.env' ! -name 'log' ! -name 'tmp' -exec rm -rf {} +
+
+          # Use rsync to copy files, excluding media, .env, log, and tmp directories
+          sudo rsync -av --exclude 'media' --exclude '.env' --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
+
           cd /srv/portfolio
           pnpm install
           sudo systemctl start portfolio
