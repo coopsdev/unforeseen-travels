@@ -46,6 +46,6 @@ jobs:
       - name: Publish Executable
         run: |
           sudo systemctl stop portfolio
-          sudo rm -r /srv/portfolio/dist
-          sudo cp -r /home/gh-runner/actions-runner/_work/portfolio/portfolio/dist /srv/portfolio/
+          sudo find /srv/portfolio/ -mindepth 1 ! -name 'media' ! -name '.env' -exec rm -rf {} +
+          sudo rsync -av --exclude 'media' --exclude '.env' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
           sudo systemctl start portfolio
