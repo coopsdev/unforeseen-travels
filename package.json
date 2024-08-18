@@ -42,12 +42,12 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^13.5.6",
+    "@next/eslint-plugin-next": "^14.2.5",
     "@payloadcms/eslint-config": "^0.0.1",
     "@swc/core": "1.6.1",
     "@types/escape-html": "^1.0.4",
     "@types/express": "^4.17.21",
-    "@types/node": "18.11.3",
+    "@types/node": "^22.4.0",
     "@types/qs": "^6.9.15",
     "@types/react": "18.0.21",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
