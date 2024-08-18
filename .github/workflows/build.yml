@@ -14,8 +14,8 @@ jobs:
       - name: Set PATH for pipx binaries
         run: echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
 
-      - name: Switch to working directory
-        run: cd /home/gh-runner/actions-runner/_work/portfolio/portfolio
+      - name: load Node
+        run: source /home/gh-runner/.bashrc
 
       - name: Install dependencies
         run: pnpm install
