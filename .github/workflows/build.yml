@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set PATH for pipx binaries
-        run: echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
-
       - name: Load NVM and Node
         run: |
           export NVM_DIR="$HOME/.nvm"
