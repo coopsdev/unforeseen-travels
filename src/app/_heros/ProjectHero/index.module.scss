@@ -32,6 +32,18 @@
 
 .title {
   margin: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+  }
+
+  @media (min-width: 1130px) {
+    font-size: 36px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 40px;
+  }
 }
 
 .warning {
@@ -79,4 +91,32 @@
 
 .caption {
   color: var(--theme-elevation-500);
+}
+
+.links {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin-top: calc(var(--base) * 4);
+
+  li {
+    margin-right: 12px;
+  }
+
+  @include mid-break {
+    display: block;
+    margin-top: var(--base);
+
+    li {
+      margin-right: 0;
+    }
+  }
+}
+
+.link {
+  @include mid-break {
+    width: 100%;
+  }
 }

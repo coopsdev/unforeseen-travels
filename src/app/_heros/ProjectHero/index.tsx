@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import Link from 'next/link'
 
 import { Project } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
@@ -8,11 +7,19 @@ import RichText from '../../_components/RichText'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 
 import classes from './index.module.scss'
+import { CMSLink } from '../../_components/Link'
 
 export const ProjectHero: React.FC<{
   project: Project
 }> = ({ project }) => {
-  const { id, title, categories, meta: { image: metaImage, description } = {}, createdAt } = project
+  const {
+    id,
+    title,
+    categories,
+    hero: { links },
+    meta: { image: metaImage, description } = {},
+    createdAt,
+  } = project
 
   return (
     <Fragment>
@@ -44,6 +51,19 @@ export const ProjectHero: React.FC<{
           </div>
           <h1 className={classes.title}>{title}</h1>
           {description && <p className={classes.description}>{description}</p>}
+          <div className={'links'}>
+            {Array.isArray(links) && (
+              <ul className={classes.links}>
+                {links.map(({ link }, i) => {
+                  return (
+                    <li key={i}>
+                      <CMSLink className={classes.link} {...link} />
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
         </div>
         <div className={classes.media}>
           <div className={classes.mediaWrapper}>
