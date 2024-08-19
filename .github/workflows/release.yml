@@ -38,9 +38,7 @@ jobs:
         run: sudo systemctl stop portfolio
 
       - name: Steal ownership of production server directory
-        run: |
-          sudo chown -R gh-runner:gh-runner /srv/portfolio
-          sudo chown -R gh-runner:gh-runner /home/gh-runner/actions-runner/_work/
+        run: sudo chown -R gh-runner:gh-runner /srv/portfolio
 
       - name: Copy existing node modules
         run: sudo ln -s /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
@@ -66,8 +64,9 @@ jobs:
 
       - name: Restore permissions in production directory
         run: |
-          sudo chown -R www-data:www-data /srv/portfolio
-          sudo chmod -R 755 /srv/portfolio
+          sudo chown -R www-data:www-data /srv/portfolio/
+          sudo chmod -R 755 /srv/portfolio/
+          sudo chown -R gh-runner:gh-runner /home/gh-runner/
 
       - name: Install deps in prod after copy to be safe
         run: |
