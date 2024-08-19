@@ -44,13 +44,11 @@ jobs:
         run: |
           sudo systemctl stop portfolio
 
-          sudo rm -r /srv/portfolio/build /srv/portfolio/dist
-          sudo cp -r /home/gh-runner/actions-runner/_work/portfolio/portfolio/build /srv/portfolio/
-          sudo cp -r /home/gh-runner/actions-runner/_work/portfolio/portfolio/dist /srv/portfolio/
+          sudo find /srv/portfolio/ -mindepth 1 ! -regex '^/srv/portfolio/media.*' ! -name '.git' ! -name '.env' ! -name 'log' ! -name 'tmp' -exec rm -rf {} +
+
+          sudo rsync -av /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
 
           cd /srv/portfolio
-          git pull
           pnpm install
-
           sudo systemctl start portfolio
 
