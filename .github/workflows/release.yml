@@ -40,7 +40,7 @@ jobs:
       - name: Steal ownership of production server directory
         run: sudo chown -R gh-runner:gh-runner /srv/portfolio
 
-      - name: Copy existing node modules
+      - name: Link existing node modules
         run: sudo ln -s /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
 
       - name: Install dependencies
