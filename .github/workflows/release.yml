@@ -38,7 +38,9 @@ jobs:
         run: sudo systemctl stop portfolio
 
       - name: Steal ownership of production server directory
-        run: sudo chown -R gh-runner:gh-runner /srv/portfolio
+        run: |
+          sudo chown -R gh-runner:gh-runner /srv/portfolio
+          sudo chown -R gh-runner:gh-runner /home/gh-runner/actions-runner/_work/
 
       - name: Copy existing node modules
         run: sudo ln -s /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
