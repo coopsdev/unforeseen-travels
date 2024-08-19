@@ -34,17 +34,20 @@ jobs:
       - name: Install pnpm
         run: sudo npm install -g pnpm
 
+      - name: Stop the production server
+        run: sudo systemctl stop portfolio
+
+      - name: Steal ownership of production server directory
+        run: sudo chown -R gh-runner:gh-runner /srv/portfolio
+
       - name: Copy existing node modules
-        run: sudo cp -r /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
+        run: sudo ln -s /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Build
         run: pnpm build
-
-      - name: Stop the production server
-        run: sudo systemctl stop portfolio
 
       - name: Publish Executable
         run: |
