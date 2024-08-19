@@ -2,12 +2,12 @@ import React, { Fragment } from 'react'
 
 import { Project } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
+import { CMSLink } from '../../_components/Link'
 import { Media } from '../../_components/Media'
 import RichText from '../../_components/RichText'
 import { formatDateTime } from '../../_utilities/formatDateTime'
 
 import classes from './index.module.scss'
-import { CMSLink } from '../../_components/Link'
 
 export const ProjectHero: React.FC<{
   project: Project
