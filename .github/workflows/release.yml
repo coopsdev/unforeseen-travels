@@ -40,10 +40,11 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Stop the production server
+        run: sudo systemctl stop portfolio
+
       - name: Publish Executable
         run: |
-          sudo systemctl stop portfolio
-
           sudo find /srv/portfolio/ -mindepth 1 \
             ! -path '/srv/portfolio/media*' \
             ! -path '/srv/portfolio/node_modules*' \
@@ -52,10 +53,18 @@ jobs:
             ! -name 'log' \
             ! -name 'tmp' -exec rm -rf {} +
 
-          sudo rsync -av --exclude 'node_modules' --exclude 'media' --exclude '.env' --exclude '.git' --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
+          sudo rsync -av --exclude 'node_modules' --exclude 'media' --exclude '.env' --exclude '.git' \
+            --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
 
+      - name: Restore permissions in production directory
+        run: |
           sudo chown -R www-data:www-data /srv/portfolio
+          sudo chmod -R 755 /srv/portfolio
+
+      - name: Install deps in prod after copy to be safe
+        run: |
           cd /srv/portfolio
           pnpm install
 
-          sudo systemctl start portfolio
+      - name: Start production server
+        run: sudo systemctl start portfolio
