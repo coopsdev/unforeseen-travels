@@ -54,6 +54,8 @@ jobs:
 
           sudo rsync -av --exclude 'node_modules' --exclude 'media' --exclude '.env' --exclude '.git' --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
 
+          sudo chown -R www-data:www-data /srv/portfolio
           cd /srv/portfolio
           pnpm install
+
           sudo systemctl start portfolio
