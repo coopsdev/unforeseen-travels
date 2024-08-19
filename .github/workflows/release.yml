@@ -34,6 +34,9 @@ jobs:
       - name: Install pnpm
         run: sudo npm install -g pnpm
 
+      - name: Copy existing node modules
+        run: sudo cp -r /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
+
       - name: Install dependencies
         run: pnpm install
 
