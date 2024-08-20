@@ -5,6 +5,8 @@ import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock'
 import { CallToAction } from '../../blocks/CallToAction'
 import { Content } from '../../blocks/Content'
+import { IconRow } from '../../blocks/IconRow'
+import { IconRowContainer } from '../../blocks/IconRowContainer'
 import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
@@ -73,7 +75,7 @@ export const Projects: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive],
+              blocks: [CallToAction, Content, IconRow, IconRowContainer, MediaBlock, Archive],
             },
           ],
         },
