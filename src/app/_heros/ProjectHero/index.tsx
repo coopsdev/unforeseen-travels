@@ -17,6 +17,7 @@ export const ProjectHero: React.FC<{
     title,
     categories,
     hero: { links },
+    layout,
     meta: { image: metaImage, description } = {},
     createdAt,
   } = project

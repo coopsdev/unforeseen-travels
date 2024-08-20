@@ -36,6 +36,29 @@ export const MEDIA_BLOCK = `
 }
 `
 
+export const ICON_ROW = `
+...on IconRow {
+  blockType
+  introContent
+  subheading
+  icons {
+    iconTitle
+    ${MEDIA}
+  }
+}
+`
+
+export const ICON_ROW_CONTAINER = `
+...on IconRowContainer {
+  blockType
+  introContent
+  mainHeading
+  rows {
+    ${ICON_ROW}
+  }
+}
+`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType

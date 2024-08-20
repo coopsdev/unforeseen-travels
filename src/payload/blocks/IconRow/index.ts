@@ -8,6 +8,7 @@ export const IconRow: Block = {
     richText({
       name: 'introContent',
       label: 'Intro Content',
+      required: false,
     }),
     {
       name: 'subheading',
@@ -24,7 +25,7 @@ export const IconRow: Block = {
           required: true,
         },
         {
-          name: 'iconImage',
+          name: 'media',
           type: 'upload',
           relationTo: 'media',
           required: true,

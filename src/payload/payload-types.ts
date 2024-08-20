@@ -110,14 +110,16 @@ export interface Page {
         blockType: 'content';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         subheading: string;
         icons?:
           | {
               iconTitle: string;
-              iconImage: number | Media;
+              media: number | Media;
               id?: string | null;
             }[]
           | null;
@@ -126,20 +128,24 @@ export interface Page {
         blockType: 'iconRow';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         mainHeading: string;
         rows?:
           | {
-              introContent: {
-                [k: string]: unknown;
-              }[];
+              introContent?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               subheading: string;
               icons?:
                 | {
                     iconTitle: string;
-                    iconImage: number | Media;
+                    media: number | Media;
                     id?: string | null;
                   }[]
                 | null;
@@ -343,14 +349,16 @@ export interface Post {
         blockType: 'content';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         subheading: string;
         icons?:
           | {
               iconTitle: string;
-              iconImage: number | Media;
+              media: number | Media;
               id?: string | null;
             }[]
           | null;
@@ -359,20 +367,24 @@ export interface Post {
         blockType: 'iconRow';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         mainHeading: string;
         rows?:
           | {
-              introContent: {
-                [k: string]: unknown;
-              }[];
+              introContent?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               subheading: string;
               icons?:
                 | {
                     iconTitle: string;
-                    iconImage: number | Media;
+                    media: number | Media;
                     id?: string | null;
                   }[]
                 | null;
@@ -487,14 +499,16 @@ export interface Post {
             blockType: 'content';
           }
         | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
+            introContent?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
             subheading: string;
             icons?:
               | {
                   iconTitle: string;
-                  iconImage: number | Media;
+                  media: number | Media;
                   id?: string | null;
                 }[]
               | null;
@@ -503,20 +517,24 @@ export interface Post {
             blockType: 'iconRow';
           }
         | {
-            introContent: {
-              [k: string]: unknown;
-            }[];
+            introContent?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
             mainHeading: string;
             rows?:
               | {
-                  introContent: {
-                    [k: string]: unknown;
-                  }[];
+                  introContent?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
                   subheading: string;
                   icons?:
                     | {
                         iconTitle: string;
-                        iconImage: number | Media;
+                        media: number | Media;
                         id?: string | null;
                       }[]
                     | null;
@@ -692,14 +710,16 @@ export interface Project {
         blockType: 'content';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         subheading: string;
         icons?:
           | {
               iconTitle: string;
-              iconImage: number | Media;
+              media: number | Media;
               id?: string | null;
             }[]
           | null;
@@ -708,20 +728,24 @@ export interface Project {
         blockType: 'iconRow';
       }
     | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
         mainHeading: string;
         rows?:
           | {
-              introContent: {
-                [k: string]: unknown;
-              }[];
+              introContent?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               subheading: string;
               icons?:
                 | {
                     iconTitle: string;
-                    iconImage: number | Media;
+                    media: number | Media;
                     id?: string | null;
                   }[]
                 | null;

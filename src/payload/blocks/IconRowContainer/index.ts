@@ -9,6 +9,7 @@ export const IconRowContainer: Block = {
     richText({
       name: 'introContent',
       label: 'Intro Content',
+      required: false,
     }),
     {
       name: 'mainHeading',

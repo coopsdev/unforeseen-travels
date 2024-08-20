@@ -14,8 +14,26 @@ const exampleIconRow = {
   introContent: [],
   subheading: 'Example Subheading',
   icons: [
-    { iconTitle: 'Icon 1', iconImage: { url: '/path/to/icon1.jpg' } },
-    { iconTitle: 'Icon 2', iconImage: { url: '/path/to/icon2.jpg' } },
+    {
+      iconTitle: 'Icon 1',
+      media: {
+        url: '/path/to/icon1.jpg',
+        alt: 'Icon 1',
+        id: 0,
+        createdAt: new Date().toDateString(),
+        updatedAt: new Date().toDateString(),
+      },
+    },
+    {
+      iconTitle: 'Icon 2',
+      media: {
+        url: '/path/to/icon2.jpg',
+        alt: 'Icon 2',
+        id: 1,
+        createdAt: new Date().toDateString(),
+        updatedAt: new Date().toDateString(),
+      },
+    },
   ],
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 
 import { Media as MediaType } from '../../../payload/payload-types'
 import { Gutter } from '../../_components/Gutter'
@@ -10,10 +9,7 @@ import classes from './index.module.scss'
 
 export type Icon = {
   iconTitle: string
-  iconImage: {
-    url?: string
-    media?: MediaType
-  }
+  media: MediaType
 }
 
 export type IconRowProps = {
@@ -37,7 +33,7 @@ export const IconRow: React.FC<IconRowProps> = ({ introContent, subheading, icon
         <div className={classes.iconsContainer}>
           {icons.map((icon, index) => (
             <div key={index} className={classes.icon}>
-              <Media resource={icon.iconImage.media ?? icon.iconImage.url} />
+              <Media resource={icon.media} />
               <p>{icon.iconTitle}</p>
             </div>
           ))}
