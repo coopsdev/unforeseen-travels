@@ -8,7 +8,7 @@ import RichText from '../../_components/RichText'
 import classes from './index.module.scss'
 
 export type Icon = {
-  iconTitle: string
+  iconTitle?: string
   media: MediaType
 }
 
@@ -34,7 +34,7 @@ export const IconRow: React.FC<IconRowProps> = ({ introContent, subheading, icon
           {icons.map((icon, index) => (
             <div key={index} className={classes.icon}>
               <Media resource={icon.media} />
-              <p>{icon.iconTitle}</p>
+              {icon.iconTitle && <p>{icon.iconTitle}</p>}
             </div>
           ))}
         </div>

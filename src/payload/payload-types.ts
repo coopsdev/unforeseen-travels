@@ -118,7 +118,7 @@ export interface Page {
         subheading: string;
         icons?:
           | {
-              iconTitle: string;
+              iconTitle?: string | null;
               media: number | Media;
               id?: string | null;
             }[]
@@ -144,7 +144,7 @@ export interface Page {
               subheading: string;
               icons?:
                 | {
-                    iconTitle: string;
+                    iconTitle?: string | null;
                     media: number | Media;
                     id?: string | null;
                   }[]
@@ -357,7 +357,7 @@ export interface Post {
         subheading: string;
         icons?:
           | {
-              iconTitle: string;
+              iconTitle?: string | null;
               media: number | Media;
               id?: string | null;
             }[]
@@ -383,7 +383,7 @@ export interface Post {
               subheading: string;
               icons?:
                 | {
-                    iconTitle: string;
+                    iconTitle?: string | null;
                     media: number | Media;
                     id?: string | null;
                   }[]
@@ -507,7 +507,7 @@ export interface Post {
             subheading: string;
             icons?:
               | {
-                  iconTitle: string;
+                  iconTitle?: string | null;
                   media: number | Media;
                   id?: string | null;
                 }[]
@@ -533,7 +533,7 @@ export interface Post {
                   subheading: string;
                   icons?:
                     | {
-                        iconTitle: string;
+                        iconTitle?: string | null;
                         media: number | Media;
                         id?: string | null;
                       }[]
@@ -718,7 +718,7 @@ export interface Project {
         subheading: string;
         icons?:
           | {
-              iconTitle: string;
+              iconTitle?: string | null;
               media: number | Media;
               id?: string | null;
             }[]
@@ -744,7 +744,7 @@ export interface Project {
               subheading: string;
               icons?:
                 | {
-                    iconTitle: string;
+                    iconTitle?: string | null;
                     media: number | Media;
                     id?: string | null;
                   }[]

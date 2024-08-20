@@ -22,7 +22,7 @@ export const IconRow: Block = {
         {
           name: 'iconTitle',
           type: 'text',
-          required: true,
+          required: false,
         },
         {
           name: 'media',
