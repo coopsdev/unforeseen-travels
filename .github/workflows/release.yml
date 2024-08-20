@@ -67,6 +67,9 @@ jobs:
           cd /srv/portfolio
           pnpm install
 
+      - name: Generate updated types
+        run: pnpm generate:types
+
       - name: Restore permissions in production directory
         run: |
           sudo chown -R www-data:www-data /srv/portfolio/
