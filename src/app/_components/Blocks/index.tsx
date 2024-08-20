@@ -5,6 +5,8 @@ import { ArchiveBlock } from '../../_blocks/ArchiveBlock'
 import { CallToActionBlock } from '../../_blocks/CallToAction'
 import { CommentsBlock, type CommentsBlockProps } from '../../_blocks/Comments/index'
 import { ContentBlock } from '../../_blocks/Content'
+import { IconRow, IconRowProps } from '../../_blocks/IconRow'
+import { IconRowContainer, IconRowContainerProps } from '../../_blocks/IconRowContainer'
 import { MediaBlock } from '../../_blocks/MediaBlock'
 import { RelatedPosts, type RelatedPostsProps } from '../../_blocks/RelatedPosts'
 import { toKebabCase } from '../../_utilities/toKebabCase'
@@ -15,13 +17,21 @@ const blockComponents = {
   cta: CallToActionBlock,
   content: ContentBlock,
   mediaBlock: MediaBlock,
+  iconRow: IconRow,
+  iconRowContainer: IconRowContainer,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
 }
 
 export const Blocks: React.FC<{
-  blocks: (Page['layout'][0] | RelatedPostsProps | CommentsBlockProps)[]
+  blocks: (
+    | Page['layout'][0]
+    | RelatedPostsProps
+    | CommentsBlockProps
+    | IconRowProps
+    | IconRowContainerProps
+  )[]
   disableTopPadding?: boolean
 }> = props => {
   const { disableTopPadding, blocks } = props
