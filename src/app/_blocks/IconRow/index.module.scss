@@ -11,6 +11,7 @@
   .iconsContainer {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
 
   .icon {
@@ -21,6 +22,7 @@
     padding: 10px;
 
     img {
+      min-width: 125px;
       max-height: 150px;
       max-width: 250px;
       width: auto;
