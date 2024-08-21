@@ -18,5 +18,31 @@ export const Header: GlobalConfig = {
         }),
       ],
     },
+    {
+      name: 'socialIcons',
+      type: 'array',
+      maxRows: 6,
+      fields: [
+        {
+          name: 'faIcon',
+          type: 'select',
+          hasMany: false,
+          required: false,
+          admin: {
+            isClearable: true,
+            isSortable: true,
+          },
+          options: [
+            {
+              label: 'Github',
+              value: 'github',
+            },
+          ],
+        },
+        link({
+          appearances: false,
+        }),
+      ],
+    },
   ],
 }

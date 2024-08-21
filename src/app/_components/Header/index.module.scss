@@ -4,6 +4,10 @@
   padding: var(--base) 0;
 }
 
+.navLinks {
+  display: flex;
+}
+
 .wrap {
   display: flex;
   justify-content: space-between;

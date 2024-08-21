@@ -1,4 +1,6 @@
 import React from 'react'
+import { IconDefinition } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 import { Page } from '../../../payload/payload-types'
@@ -17,6 +19,7 @@ type CMSLinkType = {
   children?: React.ReactNode
   className?: string
   invert?: ButtonProps['invert']
+  faIcon?: IconDefinition
 }
 
 export const CMSLink: React.FC<CMSLinkType> = ({
@@ -29,6 +32,7 @@ export const CMSLink: React.FC<CMSLinkType> = ({
   children,
   className,
   invert,
+  faIcon,
 }) => {
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
@@ -43,7 +47,11 @@ export const CMSLink: React.FC<CMSLinkType> = ({
     const newTabProps = newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
     if (href || url) {
-      return (
+      return faIcon ? (
+        <a {...newTabProps} className={className} href={href}>
+          <FontAwesomeIcon icon={faIcon} />
+        </a>
+      ) : (
         <Link {...newTabProps} href={href || url} className={className}>
           {label && label}
           {children && children}
@@ -52,7 +60,11 @@ export const CMSLink: React.FC<CMSLinkType> = ({
     }
   }
 
-  return (
+  return faIcon ? (
+    <a className={className} href={href}>
+      <FontAwesomeIcon icon={faIcon} />
+    </a>
+  ) : (
     <Button
       className={className}
       newTab={newTab}

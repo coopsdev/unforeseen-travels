@@ -21,6 +21,10 @@
     "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload/payload.config.ts payload"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@payloadcms/bundler-webpack": "^1.0.7",
     "@payloadcms/db-postgres": "^0.8.5",
     "@payloadcms/plugin-cloud": "^3.0.1",

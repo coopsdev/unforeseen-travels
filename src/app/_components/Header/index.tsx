@@ -9,6 +9,7 @@ import { Header } from '../../../payload/payload-types'
 import { fetchHeader } from '../../_api/fetchGlobals'
 import { Gutter } from '../Gutter'
 import { HeaderNav } from './Nav'
+import { HeaderSocial } from './Social'
 
 import classes from './index.module.scss'
 
@@ -40,7 +41,10 @@ export async function Header() {
               src="https://res.cloudinary.com/ddddyraui/image/upload/cl-logo_e5nuxu.png"
             />
           </Link>
-          <HeaderNav header={header} />
+          <div className={classes.navLinks}>
+            <HeaderSocial header={header} />
+            <HeaderNav header={header} />
+          </div>
         </Gutter>
       </header>
     </>

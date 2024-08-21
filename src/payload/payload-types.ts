@@ -921,6 +921,22 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  socialIcons?:
+    | {
+        faIcon?: 'github' | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

@@ -5,6 +5,10 @@ export const HEADER = `
     navItems {
       link ${LINK_FIELDS({ disableAppearance: true })}
 		}
+		socialIcons {
+		  faIcon,
+		  link ${LINK_FIELDS({ disableAppearance: true })}
+		}
   }
 `
 

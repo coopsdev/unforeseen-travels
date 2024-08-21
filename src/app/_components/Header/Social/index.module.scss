@@ -1,0 +1,25 @@
+@use '../../../_css/queries.scss' as *;
+
+.socialIcons {
+  display: flex;
+  gap: calc(var(--base) / 4) var(--base);
+  flex-wrap: wrap;
+  opacity: 1;
+  transition: opacity 100ms linear;
+  visibility: visible;
+  padding-right: 20px;
+}
+
+.socialIcon {
+  color: rgba(255, 255, 255, 1);
+  font-size: 2em;
+
+  :hover {
+    color: rgba(255, 255, 255, 0.8)
+  }
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
