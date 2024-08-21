@@ -42,6 +42,9 @@ export async function Footer() {
           })}
         </nav>
       </Gutter>
+      <h6 className={classes.copyright}>
+        {`Cooper Larson © ${new Date().getFullYear()} All Rights Reserved.`}
+      </h6>
     </footer>
   )
 }
