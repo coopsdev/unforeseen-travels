@@ -1,5 +1,6 @@
 import {
   ARCHIVE_BLOCK,
+  BABYLON_BLOCK,
   CALL_TO_ACTION,
   CONTENT,
   ICON_ROW,
@@ -49,6 +50,7 @@ export const POST = `
           ${CONTENT}
           ${ICON_ROW}
           ${ICON_ROW_CONTAINER}
+          ${BABYLON_BLOCK}
           ${MEDIA_BLOCK}
           ${ARCHIVE_BLOCK}
         }

@@ -331,7 +331,7 @@ input Page_Hero_Media_where_or {
   OR: [Page_Hero_Media_where_or]
 }
 
-union Page_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union Page_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
 
 type Cta {
   invertBackground: Boolean
@@ -430,220 +430,6 @@ enum Content_Columns_Link_appearance {
   primary
   secondary
 }
-
-type IconRow {
-  introContent(depth: Int): JSON
-  subheading: String
-  icons: [IconRow_Icons!]
-  id: String
-  blockName: String
-  blockType: String
-}
-
-type IconRow_Icons {
-  iconTitle: String
-  media(where: IconRow_Icons_Media_where): Media
-  id: String
-}
-
-input IconRow_Icons_Media_where {
-  alt: IconRow_Icons_Media_alt_operator
-  caption: IconRow_Icons_Media_caption_operator
-  updatedAt: IconRow_Icons_Media_updatedAt_operator
-  createdAt: IconRow_Icons_Media_createdAt_operator
-  url: IconRow_Icons_Media_url_operator
-  filename: IconRow_Icons_Media_filename_operator
-  mimeType: IconRow_Icons_Media_mimeType_operator
-  filesize: IconRow_Icons_Media_filesize_operator
-  width: IconRow_Icons_Media_width_operator
-  height: IconRow_Icons_Media_height_operator
-  focalX: IconRow_Icons_Media_focalX_operator
-  focalY: IconRow_Icons_Media_focalY_operator
-  id: IconRow_Icons_Media_id_operator
-  AND: [IconRow_Icons_Media_where_and]
-  OR: [IconRow_Icons_Media_where_or]
-}
-
-input IconRow_Icons_Media_alt_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-}
-
-input IconRow_Icons_Media_caption_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_updatedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_createdAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_url_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_filename_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_mimeType_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_filesize_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_width_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_height_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_focalX_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_focalY_operator {
-  equals: Float
-  not_equals: Float
-  greater_than_equal: Float
-  greater_than: Float
-  less_than_equal: Float
-  less_than: Float
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_id_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
-input IconRow_Icons_Media_where_and {
-  alt: IconRow_Icons_Media_alt_operator
-  caption: IconRow_Icons_Media_caption_operator
-  updatedAt: IconRow_Icons_Media_updatedAt_operator
-  createdAt: IconRow_Icons_Media_createdAt_operator
-  url: IconRow_Icons_Media_url_operator
-  filename: IconRow_Icons_Media_filename_operator
-  mimeType: IconRow_Icons_Media_mimeType_operator
-  filesize: IconRow_Icons_Media_filesize_operator
-  width: IconRow_Icons_Media_width_operator
-  height: IconRow_Icons_Media_height_operator
-  focalX: IconRow_Icons_Media_focalX_operator
-  focalY: IconRow_Icons_Media_focalY_operator
-  id: IconRow_Icons_Media_id_operator
-  AND: [IconRow_Icons_Media_where_and]
-  OR: [IconRow_Icons_Media_where_or]
-}
-
-input IconRow_Icons_Media_where_or {
-  alt: IconRow_Icons_Media_alt_operator
-  caption: IconRow_Icons_Media_caption_operator
-  updatedAt: IconRow_Icons_Media_updatedAt_operator
-  createdAt: IconRow_Icons_Media_createdAt_operator
-  url: IconRow_Icons_Media_url_operator
-  filename: IconRow_Icons_Media_filename_operator
-  mimeType: IconRow_Icons_Media_mimeType_operator
-  filesize: IconRow_Icons_Media_filesize_operator
-  width: IconRow_Icons_Media_width_operator
-  height: IconRow_Icons_Media_height_operator
-  focalX: IconRow_Icons_Media_focalX_operator
-  focalY: IconRow_Icons_Media_focalY_operator
-  id: IconRow_Icons_Media_id_operator
-  AND: [IconRow_Icons_Media_where_and]
-  OR: [IconRow_Icons_Media_where_or]
-}
-
-type IconRowContainer {
-  introContent(depth: Int): JSON
-  mainHeading: String
-  rows: [IconRowContainer_Rows!]
-  id: String
-  blockName: String
-  blockType: String
-}
-
-union IconRowContainer_Rows = IconRow
 
 type MediaBlock {
   invertBackground: Boolean
@@ -1187,7 +973,422 @@ input Post_Hero_Media_where_or {
   OR: [Post_Hero_Media_where_or]
 }
 
-union Post_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union Post_Layout = Cta | Content | IconRow | IconRowContainer | BabylonBlock | MediaBlock | Archive
+
+type IconRow {
+  introContent(depth: Int): JSON
+  subheading: String
+  icons: [IconRow_Icons!]
+  id: String
+  blockName: String
+  blockType: String
+}
+
+type IconRow_Icons {
+  iconTitle: String
+  media(where: IconRow_Icons_Media_where): Media
+  id: String
+}
+
+input IconRow_Icons_Media_where {
+  alt: IconRow_Icons_Media_alt_operator
+  caption: IconRow_Icons_Media_caption_operator
+  updatedAt: IconRow_Icons_Media_updatedAt_operator
+  createdAt: IconRow_Icons_Media_createdAt_operator
+  url: IconRow_Icons_Media_url_operator
+  filename: IconRow_Icons_Media_filename_operator
+  mimeType: IconRow_Icons_Media_mimeType_operator
+  filesize: IconRow_Icons_Media_filesize_operator
+  width: IconRow_Icons_Media_width_operator
+  height: IconRow_Icons_Media_height_operator
+  focalX: IconRow_Icons_Media_focalX_operator
+  focalY: IconRow_Icons_Media_focalY_operator
+  id: IconRow_Icons_Media_id_operator
+  AND: [IconRow_Icons_Media_where_and]
+  OR: [IconRow_Icons_Media_where_or]
+}
+
+input IconRow_Icons_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input IconRow_Icons_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input IconRow_Icons_Media_where_and {
+  alt: IconRow_Icons_Media_alt_operator
+  caption: IconRow_Icons_Media_caption_operator
+  updatedAt: IconRow_Icons_Media_updatedAt_operator
+  createdAt: IconRow_Icons_Media_createdAt_operator
+  url: IconRow_Icons_Media_url_operator
+  filename: IconRow_Icons_Media_filename_operator
+  mimeType: IconRow_Icons_Media_mimeType_operator
+  filesize: IconRow_Icons_Media_filesize_operator
+  width: IconRow_Icons_Media_width_operator
+  height: IconRow_Icons_Media_height_operator
+  focalX: IconRow_Icons_Media_focalX_operator
+  focalY: IconRow_Icons_Media_focalY_operator
+  id: IconRow_Icons_Media_id_operator
+  AND: [IconRow_Icons_Media_where_and]
+  OR: [IconRow_Icons_Media_where_or]
+}
+
+input IconRow_Icons_Media_where_or {
+  alt: IconRow_Icons_Media_alt_operator
+  caption: IconRow_Icons_Media_caption_operator
+  updatedAt: IconRow_Icons_Media_updatedAt_operator
+  createdAt: IconRow_Icons_Media_createdAt_operator
+  url: IconRow_Icons_Media_url_operator
+  filename: IconRow_Icons_Media_filename_operator
+  mimeType: IconRow_Icons_Media_mimeType_operator
+  filesize: IconRow_Icons_Media_filesize_operator
+  width: IconRow_Icons_Media_width_operator
+  height: IconRow_Icons_Media_height_operator
+  focalX: IconRow_Icons_Media_focalX_operator
+  focalY: IconRow_Icons_Media_focalY_operator
+  id: IconRow_Icons_Media_id_operator
+  AND: [IconRow_Icons_Media_where_and]
+  OR: [IconRow_Icons_Media_where_or]
+}
+
+type IconRowContainer {
+  introContent(depth: Int): JSON
+  mainHeading: String
+  rows: [IconRowContainer_Rows!]
+  id: String
+  blockName: String
+  blockType: String
+}
+
+union IconRowContainer_Rows = IconRow
+
+type BabylonBlock {
+  introContent(depth: Int): JSON
+  babylonModel: BabylonBlock_BabylonModel
+  id: String
+  blockName: String
+  blockType: String
+}
+
+type BabylonBlock_BabylonModel {
+  modelName: String
+  media(where: BabylonBlock_BabylonModel_Media_where): Media
+}
+
+input BabylonBlock_BabylonModel_Media_where {
+  alt: BabylonBlock_BabylonModel_Media_alt_operator
+  caption: BabylonBlock_BabylonModel_Media_caption_operator
+  updatedAt: BabylonBlock_BabylonModel_Media_updatedAt_operator
+  createdAt: BabylonBlock_BabylonModel_Media_createdAt_operator
+  url: BabylonBlock_BabylonModel_Media_url_operator
+  filename: BabylonBlock_BabylonModel_Media_filename_operator
+  mimeType: BabylonBlock_BabylonModel_Media_mimeType_operator
+  filesize: BabylonBlock_BabylonModel_Media_filesize_operator
+  width: BabylonBlock_BabylonModel_Media_width_operator
+  height: BabylonBlock_BabylonModel_Media_height_operator
+  focalX: BabylonBlock_BabylonModel_Media_focalX_operator
+  focalY: BabylonBlock_BabylonModel_Media_focalY_operator
+  id: BabylonBlock_BabylonModel_Media_id_operator
+  AND: [BabylonBlock_BabylonModel_Media_where_and]
+  OR: [BabylonBlock_BabylonModel_Media_where_or]
+}
+
+input BabylonBlock_BabylonModel_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input BabylonBlock_BabylonModel_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input BabylonBlock_BabylonModel_Media_where_and {
+  alt: BabylonBlock_BabylonModel_Media_alt_operator
+  caption: BabylonBlock_BabylonModel_Media_caption_operator
+  updatedAt: BabylonBlock_BabylonModel_Media_updatedAt_operator
+  createdAt: BabylonBlock_BabylonModel_Media_createdAt_operator
+  url: BabylonBlock_BabylonModel_Media_url_operator
+  filename: BabylonBlock_BabylonModel_Media_filename_operator
+  mimeType: BabylonBlock_BabylonModel_Media_mimeType_operator
+  filesize: BabylonBlock_BabylonModel_Media_filesize_operator
+  width: BabylonBlock_BabylonModel_Media_width_operator
+  height: BabylonBlock_BabylonModel_Media_height_operator
+  focalX: BabylonBlock_BabylonModel_Media_focalX_operator
+  focalY: BabylonBlock_BabylonModel_Media_focalY_operator
+  id: BabylonBlock_BabylonModel_Media_id_operator
+  AND: [BabylonBlock_BabylonModel_Media_where_and]
+  OR: [BabylonBlock_BabylonModel_Media_where_or]
+}
+
+input BabylonBlock_BabylonModel_Media_where_or {
+  alt: BabylonBlock_BabylonModel_Media_alt_operator
+  caption: BabylonBlock_BabylonModel_Media_caption_operator
+  updatedAt: BabylonBlock_BabylonModel_Media_updatedAt_operator
+  createdAt: BabylonBlock_BabylonModel_Media_createdAt_operator
+  url: BabylonBlock_BabylonModel_Media_url_operator
+  filename: BabylonBlock_BabylonModel_Media_filename_operator
+  mimeType: BabylonBlock_BabylonModel_Media_mimeType_operator
+  filesize: BabylonBlock_BabylonModel_Media_filesize_operator
+  width: BabylonBlock_BabylonModel_Media_width_operator
+  height: BabylonBlock_BabylonModel_Media_height_operator
+  focalX: BabylonBlock_BabylonModel_Media_focalX_operator
+  focalY: BabylonBlock_BabylonModel_Media_focalY_operator
+  id: BabylonBlock_BabylonModel_Media_id_operator
+  AND: [BabylonBlock_BabylonModel_Media_where_and]
+  OR: [BabylonBlock_BabylonModel_Media_where_or]
+}
 
 union Post_PremiumContent = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
 
@@ -1643,7 +1844,7 @@ input Project_Hero_Media_where_or {
   OR: [Project_Hero_Media_where_or]
 }
 
-union Project_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union Project_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
 
 type Project_Meta {
   title: String
@@ -3245,7 +3446,7 @@ input PageVersion_Version_Hero_Media_where_or {
   OR: [PageVersion_Version_Hero_Media_where_or]
 }
 
-union PageVersion_Version_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union PageVersion_Version_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
 
 type PageVersion_Version_Meta {
   title: String
@@ -5253,7 +5454,7 @@ input PostVersion_Version_Hero_Media_where_or {
   OR: [PostVersion_Version_Hero_Media_where_or]
 }
 
-union PostVersion_Version_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union PostVersion_Version_Layout = Cta | Content | IconRow | IconRowContainer | BabylonBlock | MediaBlock | Archive
 
 union PostVersion_Version_PremiumContent = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
 
@@ -7130,7 +7331,7 @@ input ProjectVersion_Version_Hero_Media_where_or {
   OR: [ProjectVersion_Version_Hero_Media_where_or]
 }
 
-union ProjectVersion_Version_Layout = Cta | Content | IconRow | IconRowContainer | MediaBlock | Archive
+union ProjectVersion_Version_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
 
 type ProjectVersion_Version_Meta {
   title: String
@@ -10364,6 +10565,7 @@ type SettingsUpdateDocAccess {
 
 type Header {
   navItems: [Header_NavItems!]
+  socialIcons: [Header_SocialIcons!]
   updatedAt: DateTime
   createdAt: DateTime
 }
@@ -10397,6 +10599,40 @@ enum Header_NavItems_Link_Reference_RelationTo {
 
 union Header_NavItems_Link_Reference = Page
 
+type Header_SocialIcons {
+  faIcon: Header_SocialIcons_faIcon
+  link: Header_SocialIcons_Link
+  id: String
+}
+
+enum Header_SocialIcons_faIcon {
+  github
+}
+
+type Header_SocialIcons_Link {
+  type: Header_SocialIcons_Link_type
+  newTab: Boolean
+  reference(draft: Boolean): Header_SocialIcons_Link_Reference_Relationship
+  url: String
+  label: String
+}
+
+enum Header_SocialIcons_Link_type {
+  reference
+  custom
+}
+
+type Header_SocialIcons_Link_Reference_Relationship {
+  relationTo: Header_SocialIcons_Link_Reference_RelationTo
+  value: Header_SocialIcons_Link_Reference
+}
+
+enum Header_SocialIcons_Link_Reference_RelationTo {
+  pages
+}
+
+union Header_SocialIcons_Link_Reference = Page
+
 type headerDocAccess {
   fields: HeaderDocAccessFields
   read: HeaderReadDocAccess
@@ -10405,6 +10641,7 @@ type headerDocAccess {
 
 type HeaderDocAccessFields {
   navItems: HeaderDocAccessFields_navItems
+  socialIcons: HeaderDocAccessFields_socialIcons
   updatedAt: HeaderDocAccessFields_updatedAt
   createdAt: HeaderDocAccessFields_createdAt
 }
@@ -10605,6 +10842,229 @@ type HeaderDocAccessFields_navItems_id_Update {
 }
 
 type HeaderDocAccessFields_navItems_id_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons {
+  create: HeaderDocAccessFields_socialIcons_Create
+  read: HeaderDocAccessFields_socialIcons_Read
+  update: HeaderDocAccessFields_socialIcons_Update
+  delete: HeaderDocAccessFields_socialIcons_Delete
+  fields: HeaderDocAccessFields_socialIcons_Fields
+}
+
+type HeaderDocAccessFields_socialIcons_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_Fields {
+  faIcon: HeaderDocAccessFields_socialIcons_faIcon
+  link: HeaderDocAccessFields_socialIcons_link
+  id: HeaderDocAccessFields_socialIcons_id
+}
+
+type HeaderDocAccessFields_socialIcons_faIcon {
+  create: HeaderDocAccessFields_socialIcons_faIcon_Create
+  read: HeaderDocAccessFields_socialIcons_faIcon_Read
+  update: HeaderDocAccessFields_socialIcons_faIcon_Update
+  delete: HeaderDocAccessFields_socialIcons_faIcon_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_faIcon_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_faIcon_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_faIcon_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_faIcon_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link {
+  create: HeaderDocAccessFields_socialIcons_link_Create
+  read: HeaderDocAccessFields_socialIcons_link_Read
+  update: HeaderDocAccessFields_socialIcons_link_Update
+  delete: HeaderDocAccessFields_socialIcons_link_Delete
+  fields: HeaderDocAccessFields_socialIcons_link_Fields
+}
+
+type HeaderDocAccessFields_socialIcons_link_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_Fields {
+  type: HeaderDocAccessFields_socialIcons_link_type
+  newTab: HeaderDocAccessFields_socialIcons_link_newTab
+  reference: HeaderDocAccessFields_socialIcons_link_reference
+  url: HeaderDocAccessFields_socialIcons_link_url
+  label: HeaderDocAccessFields_socialIcons_link_label
+}
+
+type HeaderDocAccessFields_socialIcons_link_type {
+  create: HeaderDocAccessFields_socialIcons_link_type_Create
+  read: HeaderDocAccessFields_socialIcons_link_type_Read
+  update: HeaderDocAccessFields_socialIcons_link_type_Update
+  delete: HeaderDocAccessFields_socialIcons_link_type_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_link_type_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_type_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_type_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_type_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_newTab {
+  create: HeaderDocAccessFields_socialIcons_link_newTab_Create
+  read: HeaderDocAccessFields_socialIcons_link_newTab_Read
+  update: HeaderDocAccessFields_socialIcons_link_newTab_Update
+  delete: HeaderDocAccessFields_socialIcons_link_newTab_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_link_newTab_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_newTab_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_newTab_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_newTab_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_reference {
+  create: HeaderDocAccessFields_socialIcons_link_reference_Create
+  read: HeaderDocAccessFields_socialIcons_link_reference_Read
+  update: HeaderDocAccessFields_socialIcons_link_reference_Update
+  delete: HeaderDocAccessFields_socialIcons_link_reference_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_link_reference_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_reference_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_reference_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_reference_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_url {
+  create: HeaderDocAccessFields_socialIcons_link_url_Create
+  read: HeaderDocAccessFields_socialIcons_link_url_Read
+  update: HeaderDocAccessFields_socialIcons_link_url_Update
+  delete: HeaderDocAccessFields_socialIcons_link_url_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_link_url_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_url_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_url_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_url_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_label {
+  create: HeaderDocAccessFields_socialIcons_link_label_Create
+  read: HeaderDocAccessFields_socialIcons_link_label_Read
+  update: HeaderDocAccessFields_socialIcons_link_label_Update
+  delete: HeaderDocAccessFields_socialIcons_link_label_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_link_label_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_label_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_label_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_link_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_id {
+  create: HeaderDocAccessFields_socialIcons_id_Create
+  read: HeaderDocAccessFields_socialIcons_id_Read
+  update: HeaderDocAccessFields_socialIcons_id_Update
+  delete: HeaderDocAccessFields_socialIcons_id_Delete
+}
+
+type HeaderDocAccessFields_socialIcons_id_Create {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_id_Read {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_id_Update {
+  permission: Boolean!
+}
+
+type HeaderDocAccessFields_socialIcons_id_Delete {
   permission: Boolean!
 }
 
@@ -14598,6 +15058,7 @@ type headerAccess {
 
 type HeaderFields {
   navItems: HeaderFields_navItems
+  socialIcons: HeaderFields_socialIcons
   updatedAt: HeaderFields_updatedAt
   createdAt: HeaderFields_createdAt
 }
@@ -14798,6 +15259,229 @@ type HeaderFields_navItems_id_Update {
 }
 
 type HeaderFields_navItems_id_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons {
+  create: HeaderFields_socialIcons_Create
+  read: HeaderFields_socialIcons_Read
+  update: HeaderFields_socialIcons_Update
+  delete: HeaderFields_socialIcons_Delete
+  fields: HeaderFields_socialIcons_Fields
+}
+
+type HeaderFields_socialIcons_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_Fields {
+  faIcon: HeaderFields_socialIcons_faIcon
+  link: HeaderFields_socialIcons_link
+  id: HeaderFields_socialIcons_id
+}
+
+type HeaderFields_socialIcons_faIcon {
+  create: HeaderFields_socialIcons_faIcon_Create
+  read: HeaderFields_socialIcons_faIcon_Read
+  update: HeaderFields_socialIcons_faIcon_Update
+  delete: HeaderFields_socialIcons_faIcon_Delete
+}
+
+type HeaderFields_socialIcons_faIcon_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_faIcon_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_faIcon_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_faIcon_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link {
+  create: HeaderFields_socialIcons_link_Create
+  read: HeaderFields_socialIcons_link_Read
+  update: HeaderFields_socialIcons_link_Update
+  delete: HeaderFields_socialIcons_link_Delete
+  fields: HeaderFields_socialIcons_link_Fields
+}
+
+type HeaderFields_socialIcons_link_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_Fields {
+  type: HeaderFields_socialIcons_link_type
+  newTab: HeaderFields_socialIcons_link_newTab
+  reference: HeaderFields_socialIcons_link_reference
+  url: HeaderFields_socialIcons_link_url
+  label: HeaderFields_socialIcons_link_label
+}
+
+type HeaderFields_socialIcons_link_type {
+  create: HeaderFields_socialIcons_link_type_Create
+  read: HeaderFields_socialIcons_link_type_Read
+  update: HeaderFields_socialIcons_link_type_Update
+  delete: HeaderFields_socialIcons_link_type_Delete
+}
+
+type HeaderFields_socialIcons_link_type_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_type_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_type_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_type_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_newTab {
+  create: HeaderFields_socialIcons_link_newTab_Create
+  read: HeaderFields_socialIcons_link_newTab_Read
+  update: HeaderFields_socialIcons_link_newTab_Update
+  delete: HeaderFields_socialIcons_link_newTab_Delete
+}
+
+type HeaderFields_socialIcons_link_newTab_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_newTab_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_newTab_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_newTab_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_reference {
+  create: HeaderFields_socialIcons_link_reference_Create
+  read: HeaderFields_socialIcons_link_reference_Read
+  update: HeaderFields_socialIcons_link_reference_Update
+  delete: HeaderFields_socialIcons_link_reference_Delete
+}
+
+type HeaderFields_socialIcons_link_reference_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_reference_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_reference_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_reference_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_url {
+  create: HeaderFields_socialIcons_link_url_Create
+  read: HeaderFields_socialIcons_link_url_Read
+  update: HeaderFields_socialIcons_link_url_Update
+  delete: HeaderFields_socialIcons_link_url_Delete
+}
+
+type HeaderFields_socialIcons_link_url_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_url_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_url_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_url_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_label {
+  create: HeaderFields_socialIcons_link_label_Create
+  read: HeaderFields_socialIcons_link_label_Read
+  update: HeaderFields_socialIcons_link_label_Update
+  delete: HeaderFields_socialIcons_link_label_Delete
+}
+
+type HeaderFields_socialIcons_link_label_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_label_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_label_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_link_label_Delete {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_id {
+  create: HeaderFields_socialIcons_id_Create
+  read: HeaderFields_socialIcons_id_Read
+  update: HeaderFields_socialIcons_id_Update
+  delete: HeaderFields_socialIcons_id_Delete
+}
+
+type HeaderFields_socialIcons_id_Create {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_id_Read {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_id_Update {
+  permission: Boolean!
+}
+
+type HeaderFields_socialIcons_id_Delete {
   permission: Boolean!
 }
 
@@ -15842,6 +16526,7 @@ input mutationSettingsInput {
 
 input mutationHeaderInput {
   navItems: [mutationHeader_NavItemsInput]
+  socialIcons: [mutationHeader_SocialIconsInput]
   updatedAt: String
   createdAt: String
 }
@@ -15865,6 +16550,33 @@ input Header_NavItems_Link_ReferenceRelationshipInput {
 }
 
 enum Header_NavItems_Link_ReferenceRelationshipInputRelationTo {
+  pages
+}
+
+input mutationHeader_SocialIconsInput {
+  faIcon: Header_SocialIcons_faIcon_MutationInput
+  link: mutationHeader_SocialIcons_LinkInput
+  id: String
+}
+
+enum Header_SocialIcons_faIcon_MutationInput {
+  github
+}
+
+input mutationHeader_SocialIcons_LinkInput {
+  type: String
+  newTab: Boolean
+  reference: Header_SocialIcons_Link_ReferenceRelationshipInput
+  url: String
+  label: String!
+}
+
+input Header_SocialIcons_Link_ReferenceRelationshipInput {
+  relationTo: Header_SocialIcons_Link_ReferenceRelationshipInputRelationTo
+  value: JSON
+}
+
+enum Header_SocialIcons_Link_ReferenceRelationshipInputRelationTo {
   pages
 }
 

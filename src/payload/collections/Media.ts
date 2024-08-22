@@ -6,6 +6,8 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: path.resolve(__dirname, '../../../media'),
+    staticURL: '/media',
+    mimeTypes: ['image/*', 'model/gltf-binary', 'application/octet-stream'],
   },
   access: {
     read: () => true,

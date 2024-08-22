@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Page } from '../../../payload/payload-types.js'
 import { ArchiveBlock } from '../../_blocks/ArchiveBlock'
+import { BabylonBlock, BabylonBlockProps } from '../../_blocks/BabylonBlock'
 import { CallToActionBlock } from '../../_blocks/CallToAction'
 import { CommentsBlock, type CommentsBlockProps } from '../../_blocks/Comments/index'
 import { ContentBlock } from '../../_blocks/Content'
@@ -19,6 +20,7 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   iconRow: IconRow,
   iconRowContainer: IconRowContainer,
+  babylonBlock: BabylonBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
@@ -31,6 +33,7 @@ export const Blocks: React.FC<{
     | CommentsBlockProps
     | IconRowProps
     | IconRowContainerProps
+    | BabylonBlockProps
   )[]
   disableTopPadding?: boolean
 }> = props => {
@@ -76,7 +79,7 @@ export const Blocks: React.FC<{
               return (
                 <BackgroundColor key={index} invert={blockIsInverted}>
                   <VerticalPadding top={paddingTop} bottom={paddingBottom}>
-                    {/* @ts-expect-error */}
+                    {/* @ts-expect-error can't get it to accept id in BabylonBlock */}
                     <Block id={toKebabCase(blockName)} {...block} />
                   </VerticalPadding>
                 </BackgroundColor>

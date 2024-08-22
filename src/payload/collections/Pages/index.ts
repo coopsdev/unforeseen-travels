@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock'
+import { BabylonBlock } from '../../blocks/BabylonBlock'
 import { CallToAction } from '../../blocks/CallToAction'
 import { Content } from '../../blocks/Content'
 import { IconRow } from '../../blocks/IconRow'
@@ -66,7 +67,15 @@ export const Pages: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [CallToAction, Content, IconRow, IconRowContainer, MediaBlock, Archive],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                IconRow,
+                IconRowContainer,
+                BabylonBlock,
+              ],
             },
           ],
         },
