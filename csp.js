@@ -7,6 +7,8 @@ const policies = {
     "'self'",
     'https://raw.githubusercontent.com',
     'https://res.cloudinary.com/ddddyraui/',
+    'blob:',
+    'data:',
   ],
   'font-src': ["'self'"],
   'frame-src': ["'self'"],

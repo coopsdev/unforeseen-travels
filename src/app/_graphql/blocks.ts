@@ -59,6 +59,17 @@ export const ICON_ROW_CONTAINER = `
 }
 `
 
+export const BABYLON_BLOCK = `
+...on BabylonBlock {
+  blockType
+  introContent
+  babylonModel {
+    modelName
+    ${MEDIA}
+  }
+}
+`
+
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType

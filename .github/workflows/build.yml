@@ -30,4 +30,4 @@ jobs:
         run: pnpm install
 
       - name: Build and test-lint Next server
-        run: pnpm build:next
+        run: pnpm build

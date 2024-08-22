@@ -110,6 +110,51 @@ export interface Page {
         blockType: 'content';
       }
     | {
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: ('collection' | 'selection') | null;
+        relationTo?: ('posts' | 'projects') | null;
+        categories?: (number | Category)[] | null;
+        limit?: number | null;
+        selectedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+            )[]
+          | null;
+        populatedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+            )[]
+          | null;
+        populatedDocsTotal?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+    | {
         introContent?:
           | {
               [k: string]: unknown;
@@ -159,49 +204,18 @@ export interface Page {
         blockType: 'iconRowContainer';
       }
     | {
-        invertBackground?: boolean | null;
-        position?: ('default' | 'fullscreen') | null;
-        media: number | Media;
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        babylonModel: {
+          modelName: string;
+          media: number | Media;
+        };
         id?: string | null;
         blockName?: string | null;
-        blockType: 'mediaBlock';
-      }
-    | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
-        populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects') | null;
-        categories?: (number | Category)[] | null;
-        limit?: number | null;
-        selectedDocs?:
-          | (
-              | {
-                  relationTo: 'posts';
-                  value: number | Post;
-                }
-              | {
-                  relationTo: 'projects';
-                  value: number | Project;
-                }
-            )[]
-          | null;
-        populatedDocs?:
-          | (
-              | {
-                  relationTo: 'posts';
-                  value: number | Post;
-                }
-              | {
-                  relationTo: 'projects';
-                  value: number | Project;
-                }
-            )[]
-          | null;
-        populatedDocsTotal?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'archive';
+        blockType: 'babylonBlock';
       }
   )[];
   slug?: string | null;
@@ -396,6 +410,20 @@ export interface Post {
         id?: string | null;
         blockName?: string | null;
         blockType: 'iconRowContainer';
+      }
+    | {
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        babylonModel: {
+          modelName: string;
+          media: number | Media;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'babylonBlock';
       }
     | {
         invertBackground?: boolean | null;
@@ -710,6 +738,51 @@ export interface Project {
         blockType: 'content';
       }
     | {
+        invertBackground?: boolean | null;
+        position?: ('default' | 'fullscreen') | null;
+        media: number | Media;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: ('collection' | 'selection') | null;
+        relationTo?: ('posts' | 'projects') | null;
+        categories?: (number | Category)[] | null;
+        limit?: number | null;
+        selectedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+            )[]
+          | null;
+        populatedDocs?:
+          | (
+              | {
+                  relationTo: 'posts';
+                  value: number | Post;
+                }
+              | {
+                  relationTo: 'projects';
+                  value: number | Project;
+                }
+            )[]
+          | null;
+        populatedDocsTotal?: number | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'archive';
+      }
+    | {
         introContent?:
           | {
               [k: string]: unknown;
@@ -759,49 +832,18 @@ export interface Project {
         blockType: 'iconRowContainer';
       }
     | {
-        invertBackground?: boolean | null;
-        position?: ('default' | 'fullscreen') | null;
-        media: number | Media;
+        introContent?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        babylonModel: {
+          modelName: string;
+          media: number | Media;
+        };
         id?: string | null;
         blockName?: string | null;
-        blockType: 'mediaBlock';
-      }
-    | {
-        introContent: {
-          [k: string]: unknown;
-        }[];
-        populateBy?: ('collection' | 'selection') | null;
-        relationTo?: ('posts' | 'projects') | null;
-        categories?: (number | Category)[] | null;
-        limit?: number | null;
-        selectedDocs?:
-          | (
-              | {
-                  relationTo: 'posts';
-                  value: number | Post;
-                }
-              | {
-                  relationTo: 'projects';
-                  value: number | Project;
-                }
-            )[]
-          | null;
-        populatedDocs?:
-          | (
-              | {
-                  relationTo: 'posts';
-                  value: number | Post;
-                }
-              | {
-                  relationTo: 'projects';
-                  value: number | Project;
-                }
-            )[]
-          | null;
-        populatedDocsTotal?: number | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'archive';
+        blockType: 'babylonBlock';
       }
   )[];
   relatedProjects?: (number | Project)[] | null;
