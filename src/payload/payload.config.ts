@@ -87,4 +87,9 @@ export default buildConfig({
     }),
     payloadCloud(),
   ],
+  upload: {
+    limits: {
+      fileSize: 50 * 1024 * 1024,
+    },
+  },
 })
