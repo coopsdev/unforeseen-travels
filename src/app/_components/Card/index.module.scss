@@ -45,6 +45,10 @@
 
 .title {
   margin: 0;
+  font-size: clamp(1rem, 1.5vw, 2rem);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .titleLink {
