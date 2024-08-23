@@ -5,7 +5,6 @@ import {
   ArcRotateCamera,
   Engine,
   HemisphericLight,
-  MeshBuilder,
   Scene,
   SceneLoader,
   Vector3,
@@ -54,9 +53,88 @@ export const BabylonScene: React.FC<MediaProps> = ({ resource }) => {
 
     if (!isModel(resource)) return
 
-    if (isModel(resource))
-      SceneLoader.Append(`${process.env.NEXT_PUBLIC_SERVER_URL}/media/`, resource.filename, scene)
-    else MeshBuilder.CreateSphere('sphere', { diameter: 2 }, scene)
+    SceneLoader.Append(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/media/`,
+      resource.filename,
+      scene,
+      scene => {
+        const meshes = scene.meshes
+
+        if (meshes.length === 0) throw new Error('No meshes were loaded.')
+
+        let minVector = new Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE)
+        let maxVector = new Vector3(-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE)
+
+        meshes.forEach(mesh => {
+          const boundingInfo = mesh.getBoundingInfo()
+          const meshMin = boundingInfo.boundingBox.minimumWorld
+          const meshMax = boundingInfo.boundingBox.maximumWorld
+
+          minVector = Vector3.Minimize(minVector, meshMin)
+          maxVector = Vector3.Maximize(maxVector, meshMax)
+        })
+
+        const boundingBoxCenter = minVector.add(maxVector).scale(0.5)
+        const boundingBoxSize = maxVector.subtract(minVector)
+
+        const radius = Math.max(boundingBoxSize.x, boundingBoxSize.y, boundingBoxSize.z)
+
+        camera.target = boundingBoxCenter
+        camera.setPosition(
+          new Vector3(
+            boundingBoxCenter.x + radius,
+            boundingBoxCenter.y + radius,
+            boundingBoxCenter.z + radius,
+          ),
+        )
+      },
+    )
+
+    let isPanning = false
+    let startX = 0
+    let startY = 0
+    let initialTarget = camera.target.clone()
+
+    // right mouse button
+    const onMouseDown = (event: {
+      button: number
+      clientX: number
+      clientY: number
+      preventDefault: () => void
+    }) => {
+      if (event.button === 2) {
+        isPanning = true
+        startX = event.clientX
+        startY = event.clientY
+        initialTarget = camera.target.clone() // Save the initial target
+        event.preventDefault() // Prevent context menu
+      }
+    }
+
+    const onMouseMove = (event: { clientX: number; clientY: number }) => {
+      if (isPanning) {
+        const deltaX = (event.clientX - startX) * 0.01
+        const deltaY = (startY - event.clientY) * 0.01
+
+        // Update the target position
+        const newTarget = initialTarget.add(new Vector3(deltaX, deltaY, 0))
+        camera.setTarget(newTarget)
+
+        // Move the camera to maintain the same distance from the new target
+        const direction = camera.position.subtract(camera.target).normalize()
+        const distance = camera.position.subtract(camera.target).length()
+        camera.position = newTarget.add(direction.scale(distance))
+      }
+    }
+
+    const onMouseUp = () => {
+      isPanning = false
+    }
+
+    const canvasElement = canvasRef.current
+    canvasElement?.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseup', onMouseUp)
 
     engine.runRenderLoop(() => {
       scene.render()
@@ -74,18 +152,18 @@ export const BabylonScene: React.FC<MediaProps> = ({ resource }) => {
       document.body.style.overflow = 'auto'
     }
 
-    const canvasElement = canvasRef.current
     canvasElement?.addEventListener('mouseenter', disableScroll)
     canvasElement?.addEventListener('mouseleave', enableScroll)
 
     return () => {
       engine.dispose()
+      canvasElement?.removeEventListener('mousedown', onMouseDown)
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseup', onMouseUp)
       canvasElement?.removeEventListener('mouseenter', disableScroll)
       canvasElement?.removeEventListener('mouseleave', enableScroll)
     }
   }, [resource])
 
-  return (
-    <canvas className={classes.viewer} ref={canvasRef} style={{ width: '100%', height: '100%' }} />
-  )
+  return <canvas className={classes.viewer} ref={canvasRef} />
 }
