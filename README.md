@@ -1,6 +1,6 @@
 # Portfolio Site
 
-This is my personal portfolio site built with Payload CMS (version 2, updating to 3 beta soon). The site showcases my work and skills, featuring custom blocks for enhanced interactivity and visual appeal.
+This is my personal portfolio site built with Payload CMS (version 2 via 'npx-create-payload-app@latest', updating to 3 beta soon). The site showcases my work and skills, featuring custom blocks for enhanced interactivity and visual appeal.
 
 ## Key Features
 
