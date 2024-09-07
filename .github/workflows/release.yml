@@ -27,21 +27,21 @@ jobs:
 
       - name: Source environment variables
         run: |
-          sudo cp /srv/portfolio/.env ./
-          sed -i 's/^PORT=.*/PORT=3300/' .env
+          sudo cp /srv/unforeseen-travels/.env ./
+          sed -i 's/^PORT=.*/PORT=3400/' .env
           source .env
 
       - name: Install pnpm
         run: sudo npm install -g pnpm
 
       - name: Stop the production server
-        run: sudo systemctl stop portfolio || echo "Failed to stop the server, continuing..."
+        run: sudo systemctl stop unforeseen-travels || echo "Failed to stop the server, continuing..."
 
       - name: Steal ownership of production server directory
-        run: sudo chown -R gh-runner:gh-runner /srv/portfolio
+        run: sudo chown -R gh-runner:gh-runner /srv/unforeseen-travels
 
       - name: Link existing node modules
-        run: sudo ln -s /srv/portfolio/node_modules /home/gh-runner/actions-runner/_work/portfolio/portfolio/
+        run: sudo ln -s /srv/unforeseen-travels/node_modules /home/gh-runner/actions-runner/_work/unforeseen-travels/unforeseen-travels/
 
       - name: Install dependencies
         run: pnpm install
@@ -52,21 +52,21 @@ jobs:
       - name: Publish Executable
         if: success()
         run: |
-          sudo find /srv/portfolio/ -mindepth 1 \
-            ! -path '/srv/portfolio/media*' \
-            ! -path '/srv/portfolio/node_modules*' \
-            ! -name '/srv/portfolio/.git*' \
+          sudo find /srv/unforeseen-travels/ -mindepth 1 \
+            ! -path '/srv/unforeseen-travels/media*' \
+            ! -path '/srv/unforeseen-travels/node_modules*' \
+            ! -name '/srv/unforeseen-travels/.git*' \
             ! -name '.env' \
             ! -name 'log' \
             ! -name 'tmp' -exec rm -rf {} +
 
           sudo rsync -av --exclude 'node_modules' --exclude 'media' --exclude '.env' --exclude '.git' \
-            --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/portfolio/portfolio/ /srv/portfolio/
+            --exclude 'log' --exclude 'tmp' /home/gh-runner/actions-runner/_work/unforeseen-travels/unforeseen-travels/ /srv/unforeseen-travels/
 
       - name: Install deps in prod after copy to be safe
         if: success()
         run: |
-          cd /srv/portfolio
+          cd /srv/unforeseen-travels
           pnpm install
 
       - name: Handle failure
@@ -76,10 +76,10 @@ jobs:
       - name: Restore permissions in production directory
         if: always()
         run: |
-          sudo chown -R www-data:www-data /srv/portfolio/
-          sudo chmod -R 755 /srv/portfolio/
+          sudo chown -R www-data:www-data /srv/unforeseen-travels/
+          sudo chmod -R 755 /srv/unforeseen-travels/
           sudo chown -R gh-runner:gh-runner /home/gh-runner/
 
       - name: Start production server
         if: always()
-        run: sudo systemctl start portfolio
+        run: sudo systemctl start unforeseen-travels
