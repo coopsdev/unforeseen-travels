@@ -12,7 +12,7 @@ const policies = {
   ],
   'font-src': ["'self'"],
   'frame-src': ["'self'"],
-  'connect-src': ["'self'", 'https://maps.googleapis.com', 'http://localhost:33000'],
+  'connect-src': ["'self'", 'https://maps.googleapis.com', 'http://localhost:34000'],
 }
 
 module.exports = Object.entries(policies)
