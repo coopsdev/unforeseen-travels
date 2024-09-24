@@ -1,6 +1,6 @@
 import { CATEGORIES } from './categories'
 import { LINK_FIELDS } from './link'
-import { MEDIA } from './media'
+import { INLINE_MEDIA, MEDIA } from './media'
 import { META } from './meta'
 
 export const CALL_TO_ACTION = `
@@ -20,6 +20,8 @@ export const CONTENT = `
   invertBackground
   columns {
     size
+    useImage
+    ${INLINE_MEDIA}
     richText
     enableLink
     link ${LINK_FIELDS()}

@@ -87,9 +87,17 @@ export interface Page {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;
@@ -340,9 +348,17 @@ export interface Post {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;
@@ -504,9 +520,17 @@ export interface Post {
             columns?:
               | {
                   size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  richText: {
-                    [k: string]: unknown;
-                  }[];
+                  useImage?: boolean | null;
+                  inlineMedia?: {
+                    imageScale?: number | null;
+                    borderRadius?: number | null;
+                    media?: number | Media | null;
+                  };
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
                   enableLink?: boolean | null;
                   link?: {
                     type?: ('reference' | 'custom') | null;
@@ -715,9 +739,17 @@ export interface Project {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;

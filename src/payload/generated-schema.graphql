@@ -387,6 +387,8 @@ type Content {
 
 type Content_Columns {
   size: Content_Columns_size
+  useImage: Boolean
+  inlineMedia: Content_Columns_InlineMedia
   richText(depth: Int): JSON
   enableLink: Boolean
   link: Content_Columns_Link
@@ -398,6 +400,200 @@ enum Content_Columns_size {
   half
   twoThirds
   full
+}
+
+type Content_Columns_InlineMedia {
+  imageScale: Float
+  borderRadius: Float
+  media(where: Content_Columns_InlineMedia_Media_where): Media
+}
+
+input Content_Columns_InlineMedia_Media_where {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
+}
+
+input Content_Columns_InlineMedia_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Content_Columns_InlineMedia_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_where_and {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
+}
+
+input Content_Columns_InlineMedia_Media_where_or {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
 }
 
 type Content_Columns_Link {
