@@ -28,12 +28,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ richText, media, links 
       <div className={classes.media}>
         {typeof media === 'object' && (
           <Fragment>
-            <Media
-              resource={media}
-              // fill
-              imgClassName={classes.image}
-              priority
-            />
+            <Media resource={media} fill imgClassName={classes.image} priority />
             {media?.caption && <RichText content={media.caption} className={classes.caption} />}
           </Fragment>
         )}
