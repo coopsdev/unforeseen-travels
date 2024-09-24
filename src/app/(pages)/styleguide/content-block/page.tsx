@@ -29,6 +29,18 @@ export default async function ContentBlockPage() {
                   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                 },
               ],
+              useImage: false,
+              inlineMedia: {
+                imageScale: 100,
+                borderRadius: 50,
+                media: {
+                  url: '/path/to/icon1.jpg',
+                  alt: 'Icon 1',
+                  id: 0,
+                  createdAt: new Date().toDateString(),
+                  updatedAt: new Date().toDateString(),
+                },
+              },
             },
           ]}
         />

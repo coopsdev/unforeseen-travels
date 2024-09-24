@@ -37,6 +37,12 @@
   }
 }
 
+.columnImageContainer {
+  overflow: hidden;
+  margin: 0 auto;
+  image-rendering: optimizeQuality;
+}
+
 .link {
   margin-top: var(--base);
 }
