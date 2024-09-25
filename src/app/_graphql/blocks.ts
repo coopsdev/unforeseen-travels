@@ -29,6 +29,13 @@ export const CONTENT = `
 }
 `
 
+export const REFERENCES_BLOCK = `
+...on ReferencesBlock {
+  blockType
+  invertBackground
+}
+`
+
 export const MEDIA_BLOCK = `
 ...on MediaBlock {
   blockType
