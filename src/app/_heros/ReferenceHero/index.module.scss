@@ -1,0 +1,127 @@
+@use '../../_css/common.scss' as *;
+
+.referenceHero {
+  display: flex;
+  gap: calc(var(--base) * 2);
+
+  @include mid-break {
+    flex-direction: column;
+    gap: var(--base);
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: visible;
+
+  @include mid-break {
+    width: 100%;
+    gap: calc(var(--base) / 2);
+  }
+}
+
+.body {
+  display: flex;
+  max-height: 50vh;
+  background: #146a8e;
+  border-radius: 10px;
+}
+
+.title {
+  margin: 0;
+
+  @media (min-width: 1024px) {
+    font-size: 30px;
+  }
+
+  @media (min-width: 1130px) {
+    font-size: 36px;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 40px;
+  }
+}
+
+.media {
+  width: 100%;
+
+  @include mid-break {
+    width: 100%;
+  }
+}
+
+.review {
+  max-width: 70%;
+  overflow-y: scroll;
+  padding-left: 15px;
+}
+
+.mediaWrapper {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  aspect-ratio: 5 / 4;
+  margin-bottom: calc(var(--base) / 2);
+  width: calc(100% + calc(var(--gutter-h) / 2));
+
+  @include mid-break {
+    margin-left: calc(var(--gutter-h) * -1);
+    width: calc(100% + var(--gutter-h) * 2);
+  }
+}
+
+.infoBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.location {
+  margin: 0 20px 0 0;
+}
+
+.rating {
+  position: relative;
+  top: -3px
+}
+
+.caption {
+  color: var(--theme-elevation-500);
+}
+
+.links {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  li {
+    margin-right: 12px;
+  }
+
+  @include mid-break {
+    display: block;
+    margin-top: var(--base);
+
+    li {
+      margin-right: 0;
+    }
+  }
+}
+
+.link {
+  @include mid-break {
+    width: 100%;
+  }
+}
