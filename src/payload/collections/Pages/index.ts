@@ -9,6 +9,7 @@ import { Content } from '../../blocks/Content'
 import { IconRow } from '../../blocks/IconRow'
 import { IconRowContainer } from '../../blocks/IconRowContainer'
 import { MediaBlock } from '../../blocks/MediaBlock'
+import { ReferencesBlock } from '../../blocks/ReferencesBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
@@ -75,6 +76,7 @@ export const Pages: CollectionConfig = {
                 IconRow,
                 IconRowContainer,
                 BabylonBlock,
+                ReferencesBlock,
               ],
             },
           ],
