@@ -6,6 +6,7 @@ import {
   ICON_ROW,
   ICON_ROW_CONTAINER,
   MEDIA_BLOCK,
+  REFERENCES_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
 import { MEDIA } from './media'
@@ -44,6 +45,7 @@ export const PAGE = `
           ${BABYLON_BLOCK}
           ${MEDIA_BLOCK}
           ${ARCHIVE_BLOCK}
+          ${REFERENCES_BLOCK}
         }
         ${META}
       }
