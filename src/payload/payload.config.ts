@@ -16,6 +16,7 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
+import { References } from './collections/References'
 import Users from './collections/Users'
 import BeforeDashboard from './components/BeforeDashboard'
 import BeforeLogin from './components/BeforeLogin'
@@ -24,7 +25,7 @@ import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
 
 const generateTitle: GenerateTitle = () => {
-  return 'My Website'
+  return 'Unforeseen Travels'
 }
 
 dotenv.config({
@@ -62,7 +63,7 @@ export default buildConfig({
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, Media, Categories, Users, Comments],
+  collections: [Pages, Posts, Projects, References, Media, Categories, Users, Comments],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

@@ -9,6 +9,8 @@ import { ContentBlock } from '../../_blocks/Content'
 import { IconRow, IconRowProps } from '../../_blocks/IconRow'
 import { IconRowContainer, IconRowContainerProps } from '../../_blocks/IconRowContainer'
 import { MediaBlock } from '../../_blocks/MediaBlock'
+import { ReferencesBlock } from '../../_blocks/References'
+import { ReferenceBlockProps } from '../../_blocks/References/types'
 import { RelatedPosts, type RelatedPostsProps } from '../../_blocks/RelatedPosts'
 import { toKebabCase } from '../../_utilities/toKebabCase'
 import { BackgroundColor } from '../BackgroundColor'
@@ -24,6 +26,7 @@ const blockComponents = {
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
+  referencesBlock: ReferencesBlock,
 }
 
 export const Blocks: React.FC<{
@@ -34,6 +37,7 @@ export const Blocks: React.FC<{
     | IconRowProps
     | IconRowContainerProps
     | BabylonBlockProps
+    | ReferenceBlockProps
   )[]
   disableTopPadding?: boolean
 }> = props => {
@@ -79,7 +83,7 @@ export const Blocks: React.FC<{
               return (
                 <BackgroundColor key={index} invert={blockIsInverted}>
                   <VerticalPadding top={paddingTop} bottom={paddingBottom}>
-                    {/* @ts-expect-error can't get it to accept id in BabylonBlock */}
+                    {/* @ts-expect-error lots of issues with this */}
                     <Block id={toKebabCase(blockName)} {...block} />
                   </VerticalPadding>
                 </BackgroundColor>

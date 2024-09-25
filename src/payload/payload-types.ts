@@ -11,6 +11,7 @@ export interface Config {
     pages: Page;
     posts: Post;
     projects: Project;
+    references: Reference;
     media: Media;
     categories: Category;
     users: User;
@@ -87,9 +88,17 @@ export interface Page {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;
@@ -217,6 +226,12 @@ export interface Page {
         blockName?: string | null;
         blockType: 'babylonBlock';
       }
+    | {
+        invertBackground?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'referencesBlock';
+      }
   )[];
   slug?: string | null;
   meta?: {
@@ -340,9 +355,17 @@ export interface Post {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;
@@ -504,9 +527,17 @@ export interface Post {
             columns?:
               | {
                   size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  richText: {
-                    [k: string]: unknown;
-                  }[];
+                  useImage?: boolean | null;
+                  inlineMedia?: {
+                    imageScale?: number | null;
+                    borderRadius?: number | null;
+                    media?: number | Media | null;
+                  };
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
                   enableLink?: boolean | null;
                   link?: {
                     type?: ('reference' | 'custom') | null;
@@ -715,9 +746,17 @@ export interface Project {
         columns?:
           | {
               size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-              richText: {
-                [k: string]: unknown;
-              }[];
+              useImage?: boolean | null;
+              inlineMedia?: {
+                imageScale?: number | null;
+                borderRadius?: number | null;
+                media?: number | Media | null;
+              };
+              richText?:
+                | {
+                    [k: string]: unknown;
+                  }[]
+                | null;
               enableLink?: boolean | null;
               link?: {
                 type?: ('reference' | 'custom') | null;
@@ -853,6 +892,23 @@ export interface Project {
     description?: string | null;
     image?: number | Media | null;
   };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "references".
+ */
+export interface Reference {
+  id: number;
+  publishedAt?: string | null;
+  title: string;
+  location?: string | null;
+  rating: number;
+  media?: number | Media | null;
+  review?: string | null;
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

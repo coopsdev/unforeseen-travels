@@ -1,5 +1,6 @@
 import type { Block, Field } from 'payload/types'
 
+import { inlineMedia } from '../../fields/inlineMedia'
 import { invertBackground } from '../../fields/invertBackground'
 import link from '../../fields/link'
 import richText from '../../fields/richText'
@@ -28,7 +29,24 @@ const columnFields: Field[] = [
       },
     ],
   },
-  richText(),
+  {
+    name: 'useImage',
+    type: 'checkbox',
+    defaultValue: false,
+  },
+  inlineMedia({
+    overrides: {
+      admin: {
+        condition: (_, siblingData) => siblingData?.useImage === true,
+      },
+    },
+  }),
+  richText({
+    admin: {
+      condition: (_, siblingData) => siblingData?.useImage === false,
+    },
+    required: false,
+  }),
   {
     name: 'enableLink',
     type: 'checkbox',

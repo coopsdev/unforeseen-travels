@@ -17,6 +17,12 @@ type Query {
   docAccessProject(id: Int!): projectsDocAccess
   versionProject(id: Int): ProjectVersion
   versionsProjects(where: versionsProject_where, limit: Int, page: Int, sort: String): versionsProjects
+  Reference(id: Int!, draft: Boolean): Reference
+  References(draft: Boolean, where: Reference_where, limit: Int, page: Int, sort: String): References
+  countReferences(draft: Boolean, where: Reference_where): countReferences
+  docAccessReference(id: Int!): referencesDocAccess
+  versionReference(id: Int): ReferenceVersion
+  versionsReferences(where: versionsReference_where, limit: Int, page: Int, sort: String): versionsReferences
   Media(id: Int!): Media
   allMedia(where: Media_where, limit: Int, page: Int, sort: String): allMedia
   countallMedia(where: Media_where): countallMedia
@@ -331,7 +337,7 @@ input Page_Hero_Media_where_or {
   OR: [Page_Hero_Media_where_or]
 }
 
-union Page_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
+union Page_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock | ReferencesBlock
 
 type Cta {
   invertBackground: Boolean
@@ -387,6 +393,8 @@ type Content {
 
 type Content_Columns {
   size: Content_Columns_size
+  useImage: Boolean
+  inlineMedia: Content_Columns_InlineMedia
   richText(depth: Int): JSON
   enableLink: Boolean
   link: Content_Columns_Link
@@ -398,6 +406,200 @@ enum Content_Columns_size {
   half
   twoThirds
   full
+}
+
+type Content_Columns_InlineMedia {
+  imageScale: Float
+  borderRadius: Float
+  media(where: Content_Columns_InlineMedia_Media_where): Media
+}
+
+input Content_Columns_InlineMedia_Media_where {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
+}
+
+input Content_Columns_InlineMedia_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Content_Columns_InlineMedia_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Content_Columns_InlineMedia_Media_where_and {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
+}
+
+input Content_Columns_InlineMedia_Media_where_or {
+  alt: Content_Columns_InlineMedia_Media_alt_operator
+  caption: Content_Columns_InlineMedia_Media_caption_operator
+  updatedAt: Content_Columns_InlineMedia_Media_updatedAt_operator
+  createdAt: Content_Columns_InlineMedia_Media_createdAt_operator
+  url: Content_Columns_InlineMedia_Media_url_operator
+  filename: Content_Columns_InlineMedia_Media_filename_operator
+  mimeType: Content_Columns_InlineMedia_Media_mimeType_operator
+  filesize: Content_Columns_InlineMedia_Media_filesize_operator
+  width: Content_Columns_InlineMedia_Media_width_operator
+  height: Content_Columns_InlineMedia_Media_height_operator
+  focalX: Content_Columns_InlineMedia_Media_focalX_operator
+  focalY: Content_Columns_InlineMedia_Media_focalY_operator
+  id: Content_Columns_InlineMedia_Media_id_operator
+  AND: [Content_Columns_InlineMedia_Media_where_and]
+  OR: [Content_Columns_InlineMedia_Media_where_or]
 }
 
 type Content_Columns_Link {
@@ -2057,6 +2259,13 @@ enum Archive_PopulatedDocs_RelationTo {
 
 union Archive_PopulatedDocs = Post | Project
 
+type ReferencesBlock {
+  invertBackground: Boolean
+  id: String
+  blockName: String
+  blockType: String
+}
+
 type Page_Meta {
   title: String
   description: String
@@ -3446,7 +3655,7 @@ input PageVersion_Version_Hero_Media_where_or {
   OR: [PageVersion_Version_Hero_Media_where_or]
 }
 
-union PageVersion_Version_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock
+union PageVersion_Version_Layout = Cta | Content | MediaBlock | Archive | IconRow | IconRowContainer | BabylonBlock | ReferencesBlock
 
 type PageVersion_Version_Meta {
   title: String
@@ -7898,6 +8107,1108 @@ input versionsProject_where_or {
   OR: [versionsProject_where_or]
 }
 
+type Reference {
+  id: Int
+  publishedAt: DateTime
+  title: String
+  location: String
+  rating: Float
+  media(where: Reference_Media_where): Media
+  review: String
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: Reference__status
+}
+
+input Reference_Media_where {
+  alt: Reference_Media_alt_operator
+  caption: Reference_Media_caption_operator
+  updatedAt: Reference_Media_updatedAt_operator
+  createdAt: Reference_Media_createdAt_operator
+  url: Reference_Media_url_operator
+  filename: Reference_Media_filename_operator
+  mimeType: Reference_Media_mimeType_operator
+  filesize: Reference_Media_filesize_operator
+  width: Reference_Media_width_operator
+  height: Reference_Media_height_operator
+  focalX: Reference_Media_focalX_operator
+  focalY: Reference_Media_focalY_operator
+  id: Reference_Media_id_operator
+  AND: [Reference_Media_where_and]
+  OR: [Reference_Media_where_or]
+}
+
+input Reference_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Reference_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input Reference_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Reference_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Reference_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_Media_where_and {
+  alt: Reference_Media_alt_operator
+  caption: Reference_Media_caption_operator
+  updatedAt: Reference_Media_updatedAt_operator
+  createdAt: Reference_Media_createdAt_operator
+  url: Reference_Media_url_operator
+  filename: Reference_Media_filename_operator
+  mimeType: Reference_Media_mimeType_operator
+  filesize: Reference_Media_filesize_operator
+  width: Reference_Media_width_operator
+  height: Reference_Media_height_operator
+  focalX: Reference_Media_focalX_operator
+  focalY: Reference_Media_focalY_operator
+  id: Reference_Media_id_operator
+  AND: [Reference_Media_where_and]
+  OR: [Reference_Media_where_or]
+}
+
+input Reference_Media_where_or {
+  alt: Reference_Media_alt_operator
+  caption: Reference_Media_caption_operator
+  updatedAt: Reference_Media_updatedAt_operator
+  createdAt: Reference_Media_createdAt_operator
+  url: Reference_Media_url_operator
+  filename: Reference_Media_filename_operator
+  mimeType: Reference_Media_mimeType_operator
+  filesize: Reference_Media_filesize_operator
+  width: Reference_Media_width_operator
+  height: Reference_Media_height_operator
+  focalX: Reference_Media_focalX_operator
+  focalY: Reference_Media_focalY_operator
+  id: Reference_Media_id_operator
+  AND: [Reference_Media_where_and]
+  OR: [Reference_Media_where_or]
+}
+
+enum Reference__status {
+  draft
+  published
+}
+
+type References {
+  docs: [Reference]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Reference_where {
+  publishedAt: Reference_publishedAt_operator
+  title: Reference_title_operator
+  location: Reference_location_operator
+  rating: Reference_rating_operator
+  media: Reference_media_operator
+  review: Reference_review_operator
+  slug: Reference_slug_operator
+  updatedAt: Reference_updatedAt_operator
+  createdAt: Reference_createdAt_operator
+  _status: Reference__status_operator
+  id: Reference_id_operator
+  AND: [Reference_where_and]
+  OR: [Reference_where_or]
+}
+
+input Reference_publishedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Reference_title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Reference_location_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_rating_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Reference_media_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
+input Reference_review_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input Reference_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Reference_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Reference_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Reference__status_operator {
+  equals: Reference__status_Input
+  not_equals: Reference__status_Input
+  in: [Reference__status_Input]
+  not_in: [Reference__status_Input]
+  all: [Reference__status_Input]
+  exists: Boolean
+}
+
+enum Reference__status_Input {
+  draft
+  published
+}
+
+input Reference_id_operator {
+  equals: Int
+  not_equals: Int
+  greater_than_equal: Int
+  greater_than: Int
+  less_than_equal: Int
+  less_than: Int
+  exists: Boolean
+}
+
+input Reference_where_and {
+  publishedAt: Reference_publishedAt_operator
+  title: Reference_title_operator
+  location: Reference_location_operator
+  rating: Reference_rating_operator
+  media: Reference_media_operator
+  review: Reference_review_operator
+  slug: Reference_slug_operator
+  updatedAt: Reference_updatedAt_operator
+  createdAt: Reference_createdAt_operator
+  _status: Reference__status_operator
+  id: Reference_id_operator
+  AND: [Reference_where_and]
+  OR: [Reference_where_or]
+}
+
+input Reference_where_or {
+  publishedAt: Reference_publishedAt_operator
+  title: Reference_title_operator
+  location: Reference_location_operator
+  rating: Reference_rating_operator
+  media: Reference_media_operator
+  review: Reference_review_operator
+  slug: Reference_slug_operator
+  updatedAt: Reference_updatedAt_operator
+  createdAt: Reference_createdAt_operator
+  _status: Reference__status_operator
+  id: Reference_id_operator
+  AND: [Reference_where_and]
+  OR: [Reference_where_or]
+}
+
+type countReferences {
+  totalDocs: Int
+}
+
+type referencesDocAccess {
+  fields: ReferencesDocAccessFields
+  create: ReferencesCreateDocAccess
+  read: ReferencesReadDocAccess
+  update: ReferencesUpdateDocAccess
+  delete: ReferencesDeleteDocAccess
+  readVersions: ReferencesReadVersionsDocAccess
+}
+
+type ReferencesDocAccessFields {
+  publishedAt: ReferencesDocAccessFields_publishedAt
+  title: ReferencesDocAccessFields_title
+  location: ReferencesDocAccessFields_location
+  rating: ReferencesDocAccessFields_rating
+  media: ReferencesDocAccessFields_media
+  review: ReferencesDocAccessFields_review
+  slug: ReferencesDocAccessFields_slug
+  updatedAt: ReferencesDocAccessFields_updatedAt
+  createdAt: ReferencesDocAccessFields_createdAt
+  _status: ReferencesDocAccessFields__status
+}
+
+type ReferencesDocAccessFields_publishedAt {
+  create: ReferencesDocAccessFields_publishedAt_Create
+  read: ReferencesDocAccessFields_publishedAt_Read
+  update: ReferencesDocAccessFields_publishedAt_Update
+  delete: ReferencesDocAccessFields_publishedAt_Delete
+}
+
+type ReferencesDocAccessFields_publishedAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_publishedAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_publishedAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_publishedAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_title {
+  create: ReferencesDocAccessFields_title_Create
+  read: ReferencesDocAccessFields_title_Read
+  update: ReferencesDocAccessFields_title_Update
+  delete: ReferencesDocAccessFields_title_Delete
+}
+
+type ReferencesDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_location {
+  create: ReferencesDocAccessFields_location_Create
+  read: ReferencesDocAccessFields_location_Read
+  update: ReferencesDocAccessFields_location_Update
+  delete: ReferencesDocAccessFields_location_Delete
+}
+
+type ReferencesDocAccessFields_location_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_location_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_location_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_location_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_rating {
+  create: ReferencesDocAccessFields_rating_Create
+  read: ReferencesDocAccessFields_rating_Read
+  update: ReferencesDocAccessFields_rating_Update
+  delete: ReferencesDocAccessFields_rating_Delete
+}
+
+type ReferencesDocAccessFields_rating_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_rating_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_rating_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_rating_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_media {
+  create: ReferencesDocAccessFields_media_Create
+  read: ReferencesDocAccessFields_media_Read
+  update: ReferencesDocAccessFields_media_Update
+  delete: ReferencesDocAccessFields_media_Delete
+}
+
+type ReferencesDocAccessFields_media_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_media_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_media_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_media_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_review {
+  create: ReferencesDocAccessFields_review_Create
+  read: ReferencesDocAccessFields_review_Read
+  update: ReferencesDocAccessFields_review_Update
+  delete: ReferencesDocAccessFields_review_Delete
+}
+
+type ReferencesDocAccessFields_review_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_review_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_review_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_review_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_slug {
+  create: ReferencesDocAccessFields_slug_Create
+  read: ReferencesDocAccessFields_slug_Read
+  update: ReferencesDocAccessFields_slug_Update
+  delete: ReferencesDocAccessFields_slug_Delete
+}
+
+type ReferencesDocAccessFields_slug_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_slug_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_slug_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_updatedAt {
+  create: ReferencesDocAccessFields_updatedAt_Create
+  read: ReferencesDocAccessFields_updatedAt_Read
+  update: ReferencesDocAccessFields_updatedAt_Update
+  delete: ReferencesDocAccessFields_updatedAt_Delete
+}
+
+type ReferencesDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_createdAt {
+  create: ReferencesDocAccessFields_createdAt_Create
+  read: ReferencesDocAccessFields_createdAt_Read
+  update: ReferencesDocAccessFields_createdAt_Update
+  delete: ReferencesDocAccessFields_createdAt_Delete
+}
+
+type ReferencesDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields__status {
+  create: ReferencesDocAccessFields__status_Create
+  read: ReferencesDocAccessFields__status_Read
+  update: ReferencesDocAccessFields__status_Update
+  delete: ReferencesDocAccessFields__status_Delete
+}
+
+type ReferencesDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
+type ReferencesCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferenceVersion {
+  parent(draft: Boolean): Reference
+  version: ReferenceVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  latest: Boolean
+  id: Int
+}
+
+type ReferenceVersion_Version {
+  publishedAt: DateTime
+  title: String
+  location: String
+  rating: Float
+  media(where: ReferenceVersion_Version_Media_where): Media
+  review: String
+  slug: String
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: ReferenceVersion_Version__status
+}
+
+input ReferenceVersion_Version_Media_where {
+  alt: ReferenceVersion_Version_Media_alt_operator
+  caption: ReferenceVersion_Version_Media_caption_operator
+  updatedAt: ReferenceVersion_Version_Media_updatedAt_operator
+  createdAt: ReferenceVersion_Version_Media_createdAt_operator
+  url: ReferenceVersion_Version_Media_url_operator
+  filename: ReferenceVersion_Version_Media_filename_operator
+  mimeType: ReferenceVersion_Version_Media_mimeType_operator
+  filesize: ReferenceVersion_Version_Media_filesize_operator
+  width: ReferenceVersion_Version_Media_width_operator
+  height: ReferenceVersion_Version_Media_height_operator
+  focalX: ReferenceVersion_Version_Media_focalX_operator
+  focalY: ReferenceVersion_Version_Media_focalY_operator
+  id: ReferenceVersion_Version_Media_id_operator
+  AND: [ReferenceVersion_Version_Media_where_and]
+  OR: [ReferenceVersion_Version_Media_where_or]
+}
+
+input ReferenceVersion_Version_Media_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input ReferenceVersion_Version_Media_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ReferenceVersion_Version_Media_where_and {
+  alt: ReferenceVersion_Version_Media_alt_operator
+  caption: ReferenceVersion_Version_Media_caption_operator
+  updatedAt: ReferenceVersion_Version_Media_updatedAt_operator
+  createdAt: ReferenceVersion_Version_Media_createdAt_operator
+  url: ReferenceVersion_Version_Media_url_operator
+  filename: ReferenceVersion_Version_Media_filename_operator
+  mimeType: ReferenceVersion_Version_Media_mimeType_operator
+  filesize: ReferenceVersion_Version_Media_filesize_operator
+  width: ReferenceVersion_Version_Media_width_operator
+  height: ReferenceVersion_Version_Media_height_operator
+  focalX: ReferenceVersion_Version_Media_focalX_operator
+  focalY: ReferenceVersion_Version_Media_focalY_operator
+  id: ReferenceVersion_Version_Media_id_operator
+  AND: [ReferenceVersion_Version_Media_where_and]
+  OR: [ReferenceVersion_Version_Media_where_or]
+}
+
+input ReferenceVersion_Version_Media_where_or {
+  alt: ReferenceVersion_Version_Media_alt_operator
+  caption: ReferenceVersion_Version_Media_caption_operator
+  updatedAt: ReferenceVersion_Version_Media_updatedAt_operator
+  createdAt: ReferenceVersion_Version_Media_createdAt_operator
+  url: ReferenceVersion_Version_Media_url_operator
+  filename: ReferenceVersion_Version_Media_filename_operator
+  mimeType: ReferenceVersion_Version_Media_mimeType_operator
+  filesize: ReferenceVersion_Version_Media_filesize_operator
+  width: ReferenceVersion_Version_Media_width_operator
+  height: ReferenceVersion_Version_Media_height_operator
+  focalX: ReferenceVersion_Version_Media_focalX_operator
+  focalY: ReferenceVersion_Version_Media_focalY_operator
+  id: ReferenceVersion_Version_Media_id_operator
+  AND: [ReferenceVersion_Version_Media_where_and]
+  OR: [ReferenceVersion_Version_Media_where_or]
+}
+
+enum ReferenceVersion_Version__status {
+  draft
+  published
+}
+
+type versionsReferences {
+  docs: [ReferenceVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsReference_where {
+  parent: versionsReference_parent_operator
+  version__publishedAt: versionsReference_version__publishedAt_operator
+  version__title: versionsReference_version__title_operator
+  version__location: versionsReference_version__location_operator
+  version__rating: versionsReference_version__rating_operator
+  version__media: versionsReference_version__media_operator
+  version__review: versionsReference_version__review_operator
+  version__slug: versionsReference_version__slug_operator
+  version__updatedAt: versionsReference_version__updatedAt_operator
+  version__createdAt: versionsReference_version__createdAt_operator
+  version___status: versionsReference_version___status_operator
+  createdAt: versionsReference_createdAt_operator
+  updatedAt: versionsReference_updatedAt_operator
+  latest: versionsReference_latest_operator
+  id: versionsReference_id_operator
+  AND: [versionsReference_where_and]
+  OR: [versionsReference_where_or]
+}
+
+input versionsReference_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsReference_version__publishedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsReference_version__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsReference_version__location_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsReference_version__rating_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input versionsReference_version__media_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
+input versionsReference_version__review_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input versionsReference_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsReference_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsReference_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsReference_version___status_operator {
+  equals: versionsReference_version___status_Input
+  not_equals: versionsReference_version___status_Input
+  in: [versionsReference_version___status_Input]
+  not_in: [versionsReference_version___status_Input]
+  all: [versionsReference_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsReference_version___status_Input {
+  draft
+  published
+}
+
+input versionsReference_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsReference_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsReference_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsReference_id_operator {
+  equals: Int
+  not_equals: Int
+  greater_than_equal: Int
+  greater_than: Int
+  less_than_equal: Int
+  less_than: Int
+  exists: Boolean
+}
+
+input versionsReference_where_and {
+  parent: versionsReference_parent_operator
+  version__publishedAt: versionsReference_version__publishedAt_operator
+  version__title: versionsReference_version__title_operator
+  version__location: versionsReference_version__location_operator
+  version__rating: versionsReference_version__rating_operator
+  version__media: versionsReference_version__media_operator
+  version__review: versionsReference_version__review_operator
+  version__slug: versionsReference_version__slug_operator
+  version__updatedAt: versionsReference_version__updatedAt_operator
+  version__createdAt: versionsReference_version__createdAt_operator
+  version___status: versionsReference_version___status_operator
+  createdAt: versionsReference_createdAt_operator
+  updatedAt: versionsReference_updatedAt_operator
+  latest: versionsReference_latest_operator
+  id: versionsReference_id_operator
+  AND: [versionsReference_where_and]
+  OR: [versionsReference_where_or]
+}
+
+input versionsReference_where_or {
+  parent: versionsReference_parent_operator
+  version__publishedAt: versionsReference_version__publishedAt_operator
+  version__title: versionsReference_version__title_operator
+  version__location: versionsReference_version__location_operator
+  version__rating: versionsReference_version__rating_operator
+  version__media: versionsReference_version__media_operator
+  version__review: versionsReference_version__review_operator
+  version__slug: versionsReference_version__slug_operator
+  version__updatedAt: versionsReference_version__updatedAt_operator
+  version__createdAt: versionsReference_version__createdAt_operator
+  version___status: versionsReference_version___status_operator
+  createdAt: versionsReference_createdAt_operator
+  updatedAt: versionsReference_updatedAt_operator
+  latest: versionsReference_latest_operator
+  id: versionsReference_id_operator
+  AND: [versionsReference_where_and]
+  OR: [versionsReference_where_or]
+}
+
 type allMedia {
   docs: [Media]
   hasNextPage: Boolean
@@ -11431,6 +12742,7 @@ type Access {
   pages: pagesAccess
   posts: postsAccess
   projects: projectsAccess
+  references: referencesAccess
   media: mediaAccess
   categories: categoriesAccess
   users: usersAccess
@@ -13569,6 +14881,283 @@ type ProjectsDeleteAccess {
 }
 
 type ProjectsReadVersionsAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type referencesAccess {
+  fields: ReferencesFields
+  create: ReferencesCreateAccess
+  read: ReferencesReadAccess
+  update: ReferencesUpdateAccess
+  delete: ReferencesDeleteAccess
+  readVersions: ReferencesReadVersionsAccess
+}
+
+type ReferencesFields {
+  publishedAt: ReferencesFields_publishedAt
+  title: ReferencesFields_title
+  location: ReferencesFields_location
+  rating: ReferencesFields_rating
+  media: ReferencesFields_media
+  review: ReferencesFields_review
+  slug: ReferencesFields_slug
+  updatedAt: ReferencesFields_updatedAt
+  createdAt: ReferencesFields_createdAt
+  _status: ReferencesFields__status
+}
+
+type ReferencesFields_publishedAt {
+  create: ReferencesFields_publishedAt_Create
+  read: ReferencesFields_publishedAt_Read
+  update: ReferencesFields_publishedAt_Update
+  delete: ReferencesFields_publishedAt_Delete
+}
+
+type ReferencesFields_publishedAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_publishedAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_publishedAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_publishedAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_title {
+  create: ReferencesFields_title_Create
+  read: ReferencesFields_title_Read
+  update: ReferencesFields_title_Update
+  delete: ReferencesFields_title_Delete
+}
+
+type ReferencesFields_title_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_title_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_title_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_title_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_location {
+  create: ReferencesFields_location_Create
+  read: ReferencesFields_location_Read
+  update: ReferencesFields_location_Update
+  delete: ReferencesFields_location_Delete
+}
+
+type ReferencesFields_location_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_location_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_location_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_location_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_rating {
+  create: ReferencesFields_rating_Create
+  read: ReferencesFields_rating_Read
+  update: ReferencesFields_rating_Update
+  delete: ReferencesFields_rating_Delete
+}
+
+type ReferencesFields_rating_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_rating_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_rating_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_rating_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_media {
+  create: ReferencesFields_media_Create
+  read: ReferencesFields_media_Read
+  update: ReferencesFields_media_Update
+  delete: ReferencesFields_media_Delete
+}
+
+type ReferencesFields_media_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_media_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_media_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_media_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_review {
+  create: ReferencesFields_review_Create
+  read: ReferencesFields_review_Read
+  update: ReferencesFields_review_Update
+  delete: ReferencesFields_review_Delete
+}
+
+type ReferencesFields_review_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_review_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_review_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_review_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_slug {
+  create: ReferencesFields_slug_Create
+  read: ReferencesFields_slug_Read
+  update: ReferencesFields_slug_Update
+  delete: ReferencesFields_slug_Delete
+}
+
+type ReferencesFields_slug_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_slug_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_slug_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_updatedAt {
+  create: ReferencesFields_updatedAt_Create
+  read: ReferencesFields_updatedAt_Read
+  update: ReferencesFields_updatedAt_Update
+  delete: ReferencesFields_updatedAt_Delete
+}
+
+type ReferencesFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields_createdAt {
+  create: ReferencesFields_createdAt_Create
+  read: ReferencesFields_createdAt_Read
+  update: ReferencesFields_createdAt_Update
+  delete: ReferencesFields_createdAt_Delete
+}
+
+type ReferencesFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ReferencesFields__status {
+  create: ReferencesFields__status_Create
+  read: ReferencesFields__status_Read
+  update: ReferencesFields__status_Update
+  delete: ReferencesFields__status_Delete
+}
+
+type ReferencesFields__status_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields__status_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields__status_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields__status_Delete {
+  permission: Boolean!
+}
+
+type ReferencesCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ReferencesReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -15821,6 +17410,10 @@ type Mutation {
   updateProject(id: Int!, autosave: Boolean, data: mutationProjectUpdateInput!, draft: Boolean): Project
   deleteProject(id: Int!): Project
   restoreVersionProject(id: Int): Project
+  createReference(data: mutationReferenceInput!, draft: Boolean): Reference
+  updateReference(id: Int!, autosave: Boolean, data: mutationReferenceUpdateInput!, draft: Boolean): Reference
+  deleteReference(id: Int!): Reference
+  restoreVersionReference(id: Int): Reference
   createMedia(data: mutationMediaInput!): Media
   updateMedia(id: Int!, autosave: Boolean, data: mutationMediaUpdateInput!): Media
   deleteMedia(id: Int!): Media
@@ -16270,6 +17863,42 @@ input mutationProjectUpdate_MetaInput {
 }
 
 enum ProjectUpdate__status_MutationInput {
+  draft
+  published
+}
+
+input mutationReferenceInput {
+  publishedAt: String
+  title: String!
+  location: String
+  rating: Float
+  media: String
+  review: String
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: Reference__status_MutationInput
+}
+
+enum Reference__status_MutationInput {
+  draft
+  published
+}
+
+input mutationReferenceUpdateInput {
+  publishedAt: String
+  title: String
+  location: String
+  rating: Float
+  media: String
+  review: String
+  slug: String
+  updatedAt: String
+  createdAt: String
+  _status: ReferenceUpdate__status_MutationInput
+}
+
+enum ReferenceUpdate__status_MutationInput {
   draft
   published
 }
