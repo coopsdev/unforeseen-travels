@@ -1,10 +1,7 @@
 import {
   ARCHIVE_BLOCK,
-  BABYLON_BLOCK,
   CALL_TO_ACTION,
   CONTENT,
-  ICON_ROW,
-  ICON_ROW_CONTAINER,
   MEDIA_BLOCK,
 } from './blocks'
 import { LINK_FIELDS } from './link'
@@ -48,9 +45,6 @@ export const POST = `
           ${CONTENT}
           ${CALL_TO_ACTION}
           ${CONTENT}
-          ${ICON_ROW}
-          ${ICON_ROW_CONTAINER}
-          ${BABYLON_BLOCK}
           ${MEDIA_BLOCK}
           ${ARCHIVE_BLOCK}
         }

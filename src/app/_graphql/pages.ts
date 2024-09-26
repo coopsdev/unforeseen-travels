@@ -1,10 +1,7 @@
 import {
   ARCHIVE_BLOCK,
-  BABYLON_BLOCK,
   CALL_TO_ACTION,
   CONTENT,
-  ICON_ROW,
-  ICON_ROW_CONTAINER,
   MEDIA_BLOCK,
   REFERENCES_BLOCK,
 } from './blocks'
@@ -40,9 +37,6 @@ export const PAGE = `
           ${CONTENT}
           ${CALL_TO_ACTION}
           ${CONTENT}
-          ${ICON_ROW}
-          ${ICON_ROW_CONTAINER}
-          ${BABYLON_BLOCK}
           ${MEDIA_BLOCK}
           ${ARCHIVE_BLOCK}
           ${REFERENCES_BLOCK}
