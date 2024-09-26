@@ -45,40 +45,6 @@ export const MEDIA_BLOCK = `
 }
 `
 
-export const ICON_ROW = `
-...on IconRow {
-  blockType
-  introContent
-  subheading
-  icons {
-    iconTitle
-    ${MEDIA}
-  }
-}
-`
-
-export const ICON_ROW_CONTAINER = `
-...on IconRowContainer {
-  blockType
-  introContent
-  mainHeading
-  rows {
-    ${ICON_ROW}
-  }
-}
-`
-
-export const BABYLON_BLOCK = `
-...on BabylonBlock {
-  blockType
-  introContent
-  babylonModel {
-    modelName
-    ${MEDIA}
-  }
-}
-`
-
 export const ARCHIVE_BLOCK = `
 ...on Archive {
   blockType
@@ -96,25 +62,12 @@ export const ARCHIVE_BLOCK = `
         title
         ${META}
       }
-      ...on Project {
-        id
-        slug
-        title
-        ${META}
-      }
     }
   }
   populatedDocs {
     relationTo
     value {
       ...on Post {
-        id
-        slug
-        title
-        ${CATEGORIES}
-        ${META}
-      }
-      ...on Project {
         id
         slug
         title

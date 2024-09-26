@@ -3,11 +3,8 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock'
-import { BabylonBlock } from '../../blocks/BabylonBlock'
 import { CallToAction } from '../../blocks/CallToAction'
 import { Content } from '../../blocks/Content'
-import { IconRow } from '../../blocks/IconRow'
-import { IconRowContainer } from '../../blocks/IconRowContainer'
 import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
@@ -123,15 +120,7 @@ export const Posts: CollectionConfig = {
               name: 'layout',
               type: 'blocks',
               required: true,
-              blocks: [
-                CallToAction,
-                Content,
-                IconRow,
-                IconRowContainer,
-                BabylonBlock,
-                MediaBlock,
-                Archive,
-              ],
+              blocks: [CallToAction, Content, MediaBlock, Archive],
             },
             {
               name: 'enablePremiumContent',
@@ -144,7 +133,7 @@ export const Posts: CollectionConfig = {
               access: {
                 read: ({ req }) => req.user,
               },
-              blocks: [CallToAction, Content, IconRow, IconRowContainer, MediaBlock, Archive],
+              blocks: [CallToAction, Content, MediaBlock, Archive],
             },
           ],
         },

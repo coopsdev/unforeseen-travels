@@ -20,8 +20,6 @@ export default async function Typography() {
         <br />
         <Link href="/styleguide/call-to-action">Call To Action Block</Link>
         <br />
-        <Link href="/styleguide/babylon-block">Babylon Block</Link>
-        <br />
         <h2>Components</h2>
         <Link href="/styleguide/buttons">Buttons</Link>
         <br />

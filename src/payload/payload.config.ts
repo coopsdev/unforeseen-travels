@@ -15,7 +15,6 @@ import Comments from './collections/Comments'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
-import { Projects } from './collections/Projects'
 import { References } from './collections/References'
 import Users from './collections/Users'
 import { Footer } from './globals/Footer'
@@ -53,7 +52,7 @@ export default buildConfig({
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, References, Media, Users, Posts, Categories, Comments, Projects],
+  collections: [Pages, References, Media, Users, Posts, Categories, Comments],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
@@ -72,7 +71,7 @@ export default buildConfig({
       collections: ['categories'],
     }),
     seo({
-      collections: ['pages', 'posts', 'projects'],
+      collections: ['pages', 'posts'],
       generateTitle,
       uploadsCollection: 'media',
     }),

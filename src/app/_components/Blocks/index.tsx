@@ -2,12 +2,9 @@ import React, { Fragment } from 'react'
 
 import { Page } from '../../../payload/payload-types.js'
 import { ArchiveBlock } from '../../_blocks/ArchiveBlock'
-import { BabylonBlock, BabylonBlockProps } from '../../_blocks/BabylonBlock'
 import { CallToActionBlock } from '../../_blocks/CallToAction'
 import { CommentsBlock, type CommentsBlockProps } from '../../_blocks/Comments/index'
 import { ContentBlock } from '../../_blocks/Content'
-import { IconRow, IconRowProps } from '../../_blocks/IconRow'
-import { IconRowContainer, IconRowContainerProps } from '../../_blocks/IconRowContainer'
 import { MediaBlock } from '../../_blocks/MediaBlock'
 import { ReferencesBlock } from '../../_blocks/References'
 import { ReferenceBlockProps } from '../../_blocks/References/types'
@@ -20,9 +17,6 @@ const blockComponents = {
   cta: CallToActionBlock,
   content: ContentBlock,
   mediaBlock: MediaBlock,
-  iconRow: IconRow,
-  iconRowContainer: IconRowContainer,
-  babylonBlock: BabylonBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
   comments: CommentsBlock,
@@ -30,15 +24,7 @@ const blockComponents = {
 }
 
 export const Blocks: React.FC<{
-  blocks: (
-    | Page['layout'][0]
-    | RelatedPostsProps
-    | CommentsBlockProps
-    | IconRowProps
-    | IconRowContainerProps
-    | BabylonBlockProps
-    | ReferenceBlockProps
-  )[]
+  blocks: (Page['layout'][0] | RelatedPostsProps | CommentsBlockProps | ReferenceBlockProps)[]
   disableTopPadding?: boolean
 }> = props => {
   const { disableTopPadding, blocks } = props
@@ -83,7 +69,6 @@ export const Blocks: React.FC<{
               return (
                 <BackgroundColor key={index} invert={blockIsInverted}>
                   <VerticalPadding top={paddingTop} bottom={paddingBottom}>
-                    {/* @ts-expect-error lots of issues with this */}
                     <Block id={toKebabCase(blockName)} {...block} />
                   </VerticalPadding>
                 </BackgroundColor>
