@@ -18,8 +18,6 @@ import { Posts } from './collections/Posts'
 import { Projects } from './collections/Projects'
 import { References } from './collections/References'
 import Users from './collections/Users'
-import BeforeDashboard from './components/BeforeDashboard'
-import BeforeLogin from './components/BeforeLogin'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 import { Settings } from './globals/Settings'
@@ -36,14 +34,6 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
-    components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
-      beforeLogin: [BeforeLogin],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: [BeforeDashboard],
-    },
     css: path.resolve(__dirname, '../admin/css/admin.css'),
     webpack: config => ({
       ...config,
