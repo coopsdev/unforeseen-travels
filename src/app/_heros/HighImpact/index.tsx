@@ -20,7 +20,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ richText, media, links 
                 <li key={i}>
                   <CMSLink {...link} />
                 </li>
-              );
+              )
             })}
           </ul>
         )}
