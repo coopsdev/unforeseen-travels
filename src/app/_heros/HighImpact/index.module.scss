@@ -3,6 +3,7 @@
 .hero {
   padding-top: calc(var(--base) * 2);
   overflow: hidden;
+  height: 400px;
 
   @include mid-break {
     padding-top: var(--gutter-h);
@@ -28,6 +29,7 @@
   top: 0;
   left: 0;
   z-index: -1;
+  overflow: hidden;
 
   @include mid-break {
     left: 0;
@@ -75,4 +77,31 @@
   text-shadow:
     rgba(0, 0, 0, 0.8) 2px 2px 8px,  /* Soft large shadow */
     rgba(0, 0, 0, 0.6) 4px 4px 4px;  /* More defined shadow closer to text */
+}
+
+.scrollDownArrow {
+  display: inline-block;
+  margin-top: 40px;
+  justify-content: center;
+  transform: translateX(-50%);
+  font-size: 42px;
+  color: #f7f7f7;
+  animation: bounce 1.5s infinite;
+  cursor: pointer;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }

@@ -20,10 +20,11 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ richText, media, links 
                 <li key={i}>
                   <CMSLink {...link} />
                 </li>
-              )
+              );
             })}
           </ul>
         )}
+        <div className={classes.scrollDownArrow}>↓</div>
       </div>
       <div className={classes.media}>
         {typeof media === 'object' && (
