@@ -53,7 +53,7 @@ export default buildConfig({
     },
   }),
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  collections: [Pages, Posts, Projects, References, Media, Categories, Users, Comments],
+  collections: [Pages, References, Media, Users, Posts, Categories, Comments, Projects],
   globals: [Settings, Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
