@@ -62,7 +62,7 @@
   height: 300px;
   background: #146a8e;
   border-radius: 10px;
-  overflow-y: hidden;
+  overflow: hidden;
 
   .review {
     flex-grow: 1; // Allow review to grow and shrink
