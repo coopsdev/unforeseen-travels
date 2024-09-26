@@ -58,7 +58,7 @@
 
 .body {
   display: flex;
-  flex-direction: row;  // Media and review side by side
+  flex-direction: row;  // Media and review side by side by default
   height: 300px;
   background: #146a8e;
   border-radius: 10px;
@@ -80,6 +80,22 @@
     flex-shrink: 1; // Allow media to shrink when necessary
     max-height: inherit; // Image respects height limit
     height: fit-content;
+    max-width: 50%;
+  }
+
+  @media (max-width: 750px) {
+    flex-direction: column;  // Stack review and media vertically for smaller screens
+    height: auto; // Allow the height to adjust for content
+
+    .media {
+      max-width: 100%;  // Image takes full width
+      height: fit-content;     // Adjust height dynamically
+      max-height: 80vh;
+    }
+
+    .review {
+      max-height: inherit; // Adjust max height for scrolling
+    }
   }
 }
 
@@ -91,7 +107,6 @@
   min-width: 187px;
   max-height: 100%;
 
-  // Dynamically adjust based on image orientation
   img {
     position: inherit !important;
     object-fit: cover;
@@ -100,9 +115,29 @@
 
     // If landscape, adjust the fit dynamically
     &.landscape {
-      // object-fit: contain;
       width: 100%;
-      min-width: 350px;
+      min-width: 500px;
+    }
+
+    &.portrait {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  // Media query for small screens (below 750px)
+  @media (max-width: 750px) {
+    display: flex;
+    justify-content: center;
+    img {
+      width: auto !important;
+      height: fit-content !important;
+      justify-content: center;
+
+      // Flip landscape and portrait rules for mobile
+      &.landscape {
+        height: 100%;
+      }
     }
   }
 }

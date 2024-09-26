@@ -30,6 +30,7 @@
   left: 0;
   z-index: -1;
   overflow: hidden;
+  height: 500px;
 
   @include mid-break {
     left: 0;
