@@ -2,19 +2,24 @@
 
 .hero {
   padding-top: calc(var(--base) * 2);
-  position: relative;
   overflow: hidden;
 
   @include mid-break {
     padding-top: var(--gutter-h);
   }
+
+  & h2 {
+    color: white;
+  }
 }
 
 .media {
-  width: calc(100% + var(--gutter-h));
-  left: calc(var(--gutter-h) / -2);
-  margin-top: calc(var(--base) * 3);
-  position: relative;
+  width: 100%;
+  margin-top: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 
   @include mid-break {
     left: 0;
@@ -32,9 +37,14 @@
   padding-top: var(--base);
   flex-wrap: wrap;
   margin: calc(var(--base) * -.5);
+  justify-content: center;
+  text-shadow: none;
 
   & > * {
     margin: calc(var(--base) / 2);
+    box-shadow:
+      rgba(0, 0, 0, 0.8) 2px 2px 8px,  /* Soft large shadow */
+      rgba(0, 0, 0, 0.6) 4px 4px 4px;  /* More defined shadow closer to text */
   }
 }
 
@@ -52,4 +62,9 @@
 
 .content {
   position: relative;
+  text-align: center;
+  padding-bottom: 40px;
+  text-shadow:
+    rgba(0, 0, 0, 0.8) 2px 2px 8px,  /* Soft large shadow */
+    rgba(0, 0, 0, 0.6) 4px 4px 4px;  /* More defined shadow closer to text */
 }
