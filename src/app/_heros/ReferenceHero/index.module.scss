@@ -25,7 +25,10 @@
 }
 
 .title {
-  margin: 0;
+  margin: 0 0 -10px;
+  text-shadow:
+    rgba(0, 0, 0, 0.25) 1px 1px 2px,  /* Soft, subtle shadow for depth */
+    rgba(0, 0, 0, 0.15) 2px 2px 2px;  /* Sharper, more defined shadow for crispness */
 
   @media (min-width: 1024px) {
     font-size: 30px;
@@ -49,6 +52,9 @@
 
 .location {
   margin: 0 20px 0 0;
+  text-shadow:
+    rgba(0, 0, 0, 0.2) 1px 1px 1px,  /* Clean, sharp shadow for slight depth */
+    rgba(0, 0, 0, 0.1) 2px 2px 1px;  /* Defined shadow to add subtle clarity */
 }
 
 .rating {
@@ -63,11 +69,14 @@
   background: #146a8e;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow:
+    rgba(0, 0, 0, 0.4) -1px 1px 12px,  /* Softer, larger shadow */
+    rgba(0, 0, 0, 0.15) 2px 2px 6px;   /* More defined, yet subtle closer shadow */
 
   .review {
     flex-grow: 1; // Allow review to grow and shrink
     flex-shrink: 1; // Ensure review shrinks as media grows
-    padding-left: 15px;
+    padding: 20px ;
     max-height: inherit;
     min-width: 400px; // Prevent the review from shrinking too much
     overflow-y: auto;
