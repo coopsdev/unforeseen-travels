@@ -57,7 +57,7 @@ const MediaComponent = React.memo(
 )
 
 export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference }) => {
-  const { title, location, review, media, rating } = reference
+  const { title, location, review, media, richText, rating } = reference
   const isMedia = media && typeof media !== 'number'
   const isLandscape = isMedia && media?.width > media?.height
 
@@ -114,7 +114,7 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference })
     return (
       <div className={`${classes.body} ${isLandscape ? '' : classes.portraitBody}`}>
         <div className={classes.review} ref={reviewRef}>
-          <p>{review}</p>
+          <RichText className={classes.reviewText} content={review} />
           {/* Conditionally render the scroll down arrow */}
           {isOverflowing && <div className={classes.scrollDownArrow}>↓</div>}
         </div>

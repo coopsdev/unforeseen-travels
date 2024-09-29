@@ -13,10 +13,10 @@
 .content {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80vw;
   align-items: flex-start;
   overflow-x: visible;
-  margin-bottom: 30px;
+  margin: 0 auto 30px;
 
   @include mid-break {
     width: 100%;
@@ -73,6 +73,9 @@
     overflow-y: auto;
     display: block;
     color: white;
+
+    .reviewText {
+    }
   }
 
   .media {

@@ -6,6 +6,7 @@ import { rating } from '../../fields/rating'
 import { slugField } from '../../fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateReferences } from './hooks/revalidateReferences'
+import richText from "../../fields/richText";
 
 export const References: CollectionConfig = {
   slug: 'references',
@@ -65,10 +66,10 @@ export const References: CollectionConfig = {
         },
       ],
     },
-    {
+    richText({
       name: 'review',
-      type: 'textarea',
-    },
+      label: 'Review',
+    }),
     slugField('title'),
   ],
 }

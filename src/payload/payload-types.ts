@@ -483,6 +483,9 @@ export interface Reference {
   rating: number;
   media?: number | Media | null;
   review?: string | null;
+  richText: {
+    [k: string]: unknown;
+  }[];
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
