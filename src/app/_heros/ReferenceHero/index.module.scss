@@ -69,7 +69,7 @@
     flex-shrink: 1; // Ensure review shrinks as media grows
     padding-left: 15px;
     max-height: inherit;
-    min-width: 200px; // Prevent the review from shrinking too much
+    min-width: 400px; // Prevent the review from shrinking too much
     overflow-y: auto;
     display: block;
     color: white;
@@ -80,7 +80,62 @@
     flex-shrink: 1; // Allow media to shrink when necessary
     max-height: inherit; // Image respects height limit
     height: fit-content;
+    display: block;
+    position: relative;
+    width: inherit;
+    background: rgba(0, 0, 0, 0.25);
+    min-width: fit-content;
     max-width: 50%;
+
+    img {
+      position: inherit !important;
+      object-fit: cover;
+      width: auto;
+      height: 300px !important;
+
+      // If landscape, adjust the fit dynamically
+      &.landscape {
+      }
+
+      &.portrait {
+        width: auto;
+        height: 400px !important;
+      }
+    }
+
+    // Media query for small screens (below 750px)
+    @media (max-width: 750px) {
+      display: flex;
+      justify-content: center;
+      img {
+        width: auto !important;
+        height: fit-content !important;
+        justify-content: center;
+
+        // Flip landscape and portrait rules for mobile
+        &.landscape {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &.portraitBody {
+    height: 400px;
+
+    .media {
+      height: auto;
+      width: auto;
+
+      .mediaWrapper {
+        width: auto;
+        min-height: 100%;
+
+        img {
+          height: 100% !important;
+        }
+      }
+    }
   }
 
   @media (max-width: 750px) {
@@ -95,49 +150,6 @@
 
     .review {
       max-height: inherit; // Adjust max height for scrolling
-    }
-  }
-}
-
-.mediaWrapper {
-  display: block;
-  position: relative;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.25);
-  min-width: 187px;
-  max-height: 100%;
-
-  img {
-    position: inherit !important;
-    object-fit: cover;
-    width: auto;
-    height: 300px !important; // Scale to height by default
-
-    // If landscape, adjust the fit dynamically
-    &.landscape {
-      width: 100%;
-      min-width: 500px;
-    }
-
-    &.portrait {
-      width: auto;
-      height: 100%;
-    }
-  }
-
-  // Media query for small screens (below 750px)
-  @media (max-width: 750px) {
-    display: flex;
-    justify-content: center;
-    img {
-      width: auto !important;
-      height: fit-content !important;
-      justify-content: center;
-
-      // Flip landscape and portrait rules for mobile
-      &.landscape {
-        height: 100%;
-      }
     }
   }
 }

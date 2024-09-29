@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
+import { debounce } from 'lodash'
 
 import { Reference } from '../../../payload/payload-types'
 import { Media } from '../../_components/Media'
@@ -9,55 +10,56 @@ import RichText from '../../_components/RichText'
 
 import classes from './index.module.scss'
 
-export const ReferenceHero: React.FC<{
-  reference: Reference
-}> = ({ reference }) => {
-  const { title, location, review, media, rating } = reference
+// Memoized InfoBar component
+const InfoBar = React.memo(({ location, rating }: { location: string; rating: number }) => (
+  <div className={classes.infoBar}>
+    <h5 className={classes.location}>{location}</h5>
+    <Rating
+      className={classes.rating}
+      initialValue={rating}
+      fillColor="gold"
+      emptyColor="lightgray"
+      allowFraction
+      allowHover={false}
+      size={25}
+    />
+  </div>
+))
 
-  const InfoBar = () => (
-    <div className={classes.infoBar}>
-      <h5 className={classes.location}>{location}</h5>
-      <Rating
-        className={classes.rating}
-        initialValue={rating}
-        fillColor="gold"
-        emptyColor="lightgray"
-        allowFraction
-        allowHover={false}
-        size={25}
-      />
-    </div>
-  )
-
-  const Meta = () => (
+// Memoized Meta component
+const Meta = React.memo(
+  ({ title, location, rating }: { title: string; location: string; rating: number }) => (
     <>
       <h1 className={classes.title}>{title}</h1>
-      <InfoBar />
+      <InfoBar location={location} rating={rating} />
     </>
-  )
+  ),
+)
 
-  const MediaComponent = () => {
-    if (!media || typeof media === 'number') return <div>Media is undefined</div>
-    const isLandscape = media?.width > media?.height
+// Memoized MediaComponent
+const MediaComponent = React.memo(
+  ({ media, isLandscape }: { media: any; isLandscape: boolean }) => {
+    if (!media) return <div>Media is undefined</div>
 
     return (
       <div className={classes.media}>
-        <div className={classes.mediaWrapper}>
-          {!media && <div className={classes.placeholder}>No image</div>}
-          {media && typeof media !== 'string' && (
-            <Media
-              imgClassName={`${classes.image} ${isLandscape ? classes.landscape : ''}`}
-              resource={media}
-              fill
-            />
-          )}
-        </div>
-        {media && typeof media !== 'string' && typeof media !== 'number' && media?.caption && (
-          <RichText content={media.caption} className={classes.caption} />
+        {!media && <div className={classes.placeholder}>No image</div>}
+        {media && typeof media !== 'string' && (
+          <Media
+            imgClassName={`${classes.image} ${isLandscape ? classes.landscape : classes.portrait}`}
+            resource={media}
+            fill
+          />
         )}
       </div>
     )
-  }
+  },
+)
+
+export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference }) => {
+  const { title, location, review, media, rating } = reference
+  const isMedia = media && typeof media !== 'number'
+  const isLandscape = isMedia && media?.width > media?.height
 
   // Body component now tracks its own review ref and handles its own overflow detection
   const Body = () => {
@@ -83,20 +85,20 @@ export const ReferenceHero: React.FC<{
       }
     }, [])
 
-    // Hide the arrow when scrolled
+    // Debounced scroll handler
     useEffect(() => {
       const reviewElement = reviewRef.current
 
-      const handleScroll = () => {
+      const handleScroll = debounce(() => {
         if (reviewElement) {
-          // Set threshold for scrollTop > 0 to ensure minor scrolls hide the arrow
+          // Set threshold for scrollTop > 10 to ensure minor scrolls hide the arrow
           if (reviewElement.scrollTop > 10) {
             setIsOverflowing(false)
           } else {
             setIsOverflowing(reviewElement.scrollHeight > reviewElement.clientHeight)
           }
         }
-      }
+      }, 100) // Debounce for 100ms
 
       if (reviewElement) {
         reviewElement.addEventListener('scroll', handleScroll)
@@ -110,21 +112,20 @@ export const ReferenceHero: React.FC<{
     }, [])
 
     return (
-      <div className={classes.body}>
-        {/* Add the ref here to detect overflow */}
+      <div className={`${classes.body} ${isLandscape ? '' : classes.portraitBody}`}>
         <div className={classes.review} ref={reviewRef}>
           <p>{review}</p>
           {/* Conditionally render the scroll down arrow */}
           {isOverflowing && <div className={classes.scrollDownArrow}>↓</div>}
         </div>
-        <MediaComponent />
+        <MediaComponent media={media} isLandscape={isLandscape} />
       </div>
     )
   }
 
   return (
     <div className={classes.content}>
-      <Meta />
+      <Meta title={title} location={location} rating={rating} />
       <Body />
     </div>
   )
