@@ -3,10 +3,10 @@ import type { CollectionConfig } from 'payload/types'
 import { admins } from '../../access/admins'
 import { adminsOrPublished } from '../../access/adminsOrPublished'
 import { rating } from '../../fields/rating'
+import richText from '../../fields/richText'
 import { slugField } from '../../fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { revalidateReferences } from './hooks/revalidateReferences'
-import richText from "../../fields/richText";
 
 export const References: CollectionConfig = {
   slug: 'references',
