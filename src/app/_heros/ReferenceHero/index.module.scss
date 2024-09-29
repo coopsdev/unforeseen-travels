@@ -101,6 +101,9 @@
     background: rgba(0, 0, 0, 0.25);
     min-width: fit-content;
     max-width: 50%;
+    box-shadow:
+      rgba(0, 0, 0, 0.2) -1px 1px 10px,  /* Subtle, larger shadow for smooth depth */
+      rgba(0, 0, 0, 0.1) 1px 1px 4px;    /* Sharper, defined shadow for clear separation */
 
     img {
       position: inherit !important;
