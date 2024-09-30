@@ -13,10 +13,9 @@
 .content {
   display: flex;
   flex-direction: column;
-  width: 80vw;
   align-items: flex-start;
   overflow-x: visible;
-  margin: 0 auto 30px;
+  margin: 0 auto 50px;
 
   @include mid-break {
     width: 100%;
