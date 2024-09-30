@@ -61,53 +61,45 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference })
   const isMedia = media && typeof media !== 'number'
   const isLandscape = isMedia && media?.width > media?.height
 
-  // Body component now tracks its own review ref and handles its own overflow detection
   const Body = () => {
     const [isOverflowing, setIsOverflowing] = useState(false)
+    const [isBottomReached, setIsBottomReached] = useState(false)
     const reviewRef = useRef<HTMLDivElement>(null)
 
-    // Check if the review content is overflowing
-    useEffect(() => {
-      const checkOverflow = () => {
-        const reviewElement = reviewRef.current
-        if (reviewElement) {
-          setIsOverflowing(reviewElement.scrollHeight > reviewElement.clientHeight)
-        }
+    // Function to check if content is overflowing
+    const checkOverflow = () => {
+      const reviewElement = reviewRef.current
+      if (reviewElement) {
+        setIsOverflowing(reviewElement.scrollHeight > reviewElement.clientHeight)
       }
+    }
 
-      checkOverflow()
-
-      // Optionally, listen to window resize to re-check overflow when the viewport changes
-      window.addEventListener('resize', checkOverflow)
-
-      return () => {
-        window.removeEventListener('resize', checkOverflow)
+    // Debounced scroll handler to hide arrow when scrolling down
+    const handleScroll = debounce(() => {
+      const reviewElement = reviewRef.current
+      if (reviewElement) {
+        const isAtBottom =
+          reviewElement.scrollTop + reviewElement.clientHeight >= reviewElement.scrollHeight
+        setIsBottomReached(isAtBottom)
+        setIsOverflowing(reviewElement.scrollHeight > reviewElement.clientHeight && !isAtBottom)
       }
-    }, [])
+    }, 100)
 
-    // Debounced scroll handler
     useEffect(() => {
       const reviewElement = reviewRef.current
+      if (!reviewElement) return
 
-      const handleScroll = debounce(() => {
-        if (reviewElement) {
-          // Set threshold for scrollTop > 10 to ensure minor scrolls hide the arrow
-          if (reviewElement.scrollTop > 10) {
-            setIsOverflowing(false)
-          } else {
-            setIsOverflowing(reviewElement.scrollHeight > reviewElement.clientHeight)
-          }
-        }
-      }, 100) // Debounce for 100ms
+      checkOverflow() // Initial check
 
-      if (reviewElement) {
-        reviewElement.addEventListener('scroll', handleScroll)
-      }
+      reviewElement.addEventListener('scroll', handleScroll)
+
+      window.addEventListener('resize', checkOverflow) // Recheck on window resize
 
       return () => {
         if (reviewElement) {
           reviewElement.removeEventListener('scroll', handleScroll)
         }
+        window.removeEventListener('resize', checkOverflow)
       }
     }, [])
 
@@ -115,8 +107,8 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference })
       <div className={`${classes.body} ${isLandscape ? '' : classes.portraitBody}`}>
         <div className={classes.review} ref={reviewRef}>
           <RichText className={classes.reviewText} content={review} />
-          {/* Conditionally render the scroll down arrow */}
-          {isOverflowing && <div className={classes.scrollDownArrow}>↓</div>}
+          {/* Conditionally render the scroll down arrow if content overflows and not at the bottom */}
+          {isOverflowing && !isBottomReached && <div className={classes.scrollDownArrow}>↓</div>}
         </div>
         <MediaComponent media={media} isLandscape={isLandscape} />
       </div>
