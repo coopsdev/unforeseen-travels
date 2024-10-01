@@ -12,7 +12,7 @@ export const References: CollectionConfig = {
   slug: 'references',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'location', 'rating', 'updatedAt', 'slug'],
+    defaultColumns: ['updatedAt', 'slug'],
     preview: doc => {
       return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/next/preview?url=${encodeURIComponent(
         `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/references/${doc?.slug}`,
@@ -41,10 +41,15 @@ export const References: CollectionConfig = {
       },
     },
     {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'references',
-      label: 'Additional References',
+      label: 'Reviews',
       type: 'array',
-      required: false,
+      required: true,
       fields: [
         {
           type: 'row',
@@ -79,36 +84,6 @@ export const References: CollectionConfig = {
         }),
       ],
     },
-    {
-      type: 'row',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'location',
-          type: 'text',
-        },
-      ],
-    },
-    {
-      type: 'row',
-      fields: [
-        rating(),
-        {
-          name: 'media',
-          type: 'upload',
-          relationTo: 'media',
-          required: false,
-        },
-      ],
-    },
-    richText({
-      name: 'review',
-      label: 'Review',
-    }),
     slugField('title'),
   ],
 }

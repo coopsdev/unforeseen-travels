@@ -7,10 +7,6 @@ export const REFERENCES = `
         slug
         id
         title
-        location
-        rating
-        ${MEDIA}
-        review
         references {
           location
           date
@@ -29,10 +25,13 @@ export const REFERENCE = `
       docs {
         id
         title
-        location
-        rating
-        ${MEDIA}
-        review
+        references {
+          location
+          date
+          rating
+          ${MEDIA}
+          review
+        }
       }
     }
   }
