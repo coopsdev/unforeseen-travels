@@ -482,6 +482,7 @@ export interface Reference {
   references: {
     location?: string | null;
     date?: string | null;
+    pets?: string | null;
     rating: number;
     media?: number | Media | null;
     review: {

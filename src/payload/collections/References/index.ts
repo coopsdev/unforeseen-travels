@@ -71,7 +71,18 @@ export const References: CollectionConfig = {
             },
           ],
         },
-        rating(),
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'pets',
+              label: 'Pets',
+              required: false,
+              type: 'text',
+            },
+            rating(),
+          ],
+        },
         {
           name: 'media',
           type: 'upload',

@@ -28,6 +28,7 @@ export const REFERENCE = `
         references {
           location
           date
+          pets
           rating
           ${MEDIA}
           review
