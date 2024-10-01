@@ -13,7 +13,7 @@ import Error from 'payload/dist/admin/components/forms/Error/index'
 import { validateHexColor } from '../index'
 
 // Import the SCSS stylesheet
-import './styles.scss'
+import '../index.module.scss'
 
 // keep a list of default colors to choose from
 const defaultColors = ['#333333', '#9A9A9A', '#F3F3F3', '#FF6F76', '#FDFFA4', '#B2FFD6', '#F3DDF3']

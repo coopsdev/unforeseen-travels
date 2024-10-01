@@ -1,7 +1,7 @@
 import React from 'react'
 import { Props } from 'payload/components/views/Cell'
 
-import './styles.scss'
+import '../index.module.scss'
 
 const Cell: React.FC<Props> = props => {
   const { cellData } = props
