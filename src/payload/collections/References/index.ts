@@ -41,6 +41,45 @@ export const References: CollectionConfig = {
       },
     },
     {
+      name: 'references',
+      label: 'Additional References',
+      type: 'array',
+      required: false,
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'location',
+              type: 'text',
+            },
+            {
+              name: 'date',
+              label: 'Date (Month, Year)',
+              type: 'date',
+              admin: {
+                date: {
+                  pickerAppearance: 'monthOnly',
+                  displayFormat: 'MMMM yyyy',
+                },
+              },
+            },
+          ],
+        },
+        rating(),
+        {
+          name: 'media',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+        },
+        richText({
+          name: 'review',
+          label: 'Review',
+        }),
+      ],
+    },
+    {
       type: 'row',
       fields: [
         {

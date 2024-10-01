@@ -11,6 +11,13 @@ export const REFERENCES = `
         rating
         ${MEDIA}
         review
+        references {
+          location
+          date
+          rating
+          ${MEDIA}
+          review
+        }
       }
     }
   }

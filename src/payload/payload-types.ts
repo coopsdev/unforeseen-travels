@@ -478,6 +478,18 @@ export interface User {
 export interface Reference {
   id: number;
   publishedAt?: string | null;
+  references?:
+    | {
+        location?: string | null;
+        date?: string | null;
+        rating: number;
+        media?: number | Media | null;
+        review: {
+          [k: string]: unknown;
+        }[];
+        id?: string | null;
+      }[]
+    | null;
   title: string;
   location?: string | null;
   rating: number;

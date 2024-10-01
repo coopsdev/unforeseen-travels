@@ -1,13 +1,41 @@
 @use '../../_css/common.scss' as *;
 
 .referenceHero {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: calc(var(--base) * 2);
+}
 
-  @include mid-break {
-    gap: var(--base);
+.title {
+  margin: 0;
+}
+
+.bridge {
+  position: absolute;
+  left: 3px;
+  width: 4px;
+  background-color: rgba(221, 111, 15, 0.58);
+  top: 80px; // Start just below the title
+  height: 87% !important;
+  border-radius: 2px;
+  box-shadow:
+    rgba(0, 0, 0, 0.3) -1px 1px 8px,  /* Softer, larger shadow */
+    rgba(0, 0, 0, 0.15) 2px 2px 6px;   /* More defined, yet subtle closer shadow */
+}
+
+.referenceContainer {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+
+  &.multiReference {
+    margin-bottom: 40px;
   }
+}
+
+.referenceContent {
+  position: relative;
+  padding-left: 20px;
 }
 
 .content {
@@ -44,7 +72,7 @@
 
 .infoBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 15px;
 }
