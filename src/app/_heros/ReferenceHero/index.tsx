@@ -124,9 +124,14 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
       {references.length > 1 && (
         <>
           <div className={classes.bridge} style={{ height: `${containerHeight}px` }}></div>
-          <div className={`${classes.references} ${classes.multiReference}`} ref={containerRef}>
+          <div className={classes.references} ref={containerRef}>
             {references.map((ref, index) => (
-              <div key={index} className={classes.referenceContainer}>
+              <div
+                key={index}
+                className={`${classes.referenceContainer} ${
+                  index !== references.length - 1 ? classes.multiReference : ''
+                }`}
+              >
                 <div className={classes.referenceContent}>
                   <InfoBar location={ref.location} rating={ref.rating} />
                   <Body review={ref.review} media={ref.media} />
