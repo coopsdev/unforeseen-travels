@@ -3,7 +3,9 @@
 .hero {
   padding-top: calc(var(--base) * 2);
   overflow: hidden;
-  height: 400px;
+  height: fit-content;
+  min-height: 500px;
+  background-size: cover;
 
   @include mid-break {
     padding-top: var(--gutter-h);
@@ -22,32 +24,15 @@
   }
 }
 
-.media {
-  width: 100%;
-  margin-top: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: hidden;
-  height: fit-content;
-
-  @include mid-break {
-    left: 0;
-    margin-top: var(--base);
-    margin-left: calc(var(--gutter-h) * -1);
-    width: calc(100% + var(--gutter-h) * 2);
-  }
-}
-
 .links {
   list-style: none;
-  margin: 0;
   padding: 0;
   display: flex;
   padding-top: var(--base);
   flex-wrap: wrap;
   margin: calc(var(--base) * -.5);
+  margin-top: 20px;
+  margin-bottom: 20px;
   justify-content: center;
   text-shadow: none;
 
@@ -74,7 +59,7 @@
 .content {
   position: relative;
   text-align: center;
-  padding-bottom: 40px;
+  padding: 50px 0;
   text-shadow:
     rgba(0, 0, 0, 0.8) 2px 2px 8px,  /* Soft large shadow */
     rgba(0, 0, 0, 0.6) 4px 4px 4px;  /* More defined shadow closer to text */

@@ -482,8 +482,7 @@ export interface Reference {
   location?: string | null;
   rating: number;
   media?: number | Media | null;
-  review?: string | null;
-  richText: {
+  review: {
     [k: string]: unknown;
   }[];
   slug?: string | null;

@@ -18,6 +18,7 @@ type Leaf = {
   }
   children?: Children
   url?: string
+  textAlign?: 'left' | 'center' | 'right'
   [key: string]: unknown
 }
 
@@ -61,27 +62,70 @@ const serialize = (children?: Children): React.ReactNode[] =>
       return null
     }
 
+    // Handle textAlign by applying it to block-level elements
+    const style = node.textAlign ? { textAlign: node.textAlign } : {}
+
     switch (node.type) {
       case 'h1':
-        return <h1 key={i}>{serialize(node?.children)}</h1>
+        return (
+          <h1 key={i} style={style}>
+            {serialize(node?.children)}
+          </h1>
+        )
       case 'h2':
-        return <h2 key={i}>{serialize(node?.children)}</h2>
+        return (
+          <h2 key={i} style={style}>
+            {serialize(node?.children)}
+          </h2>
+        )
       case 'h3':
-        return <h3 key={i}>{serialize(node?.children)}</h3>
+        return (
+          <h3 key={i} style={style}>
+            {serialize(node?.children)}
+          </h3>
+        )
       case 'h4':
-        return <h4 key={i}>{serialize(node?.children)}</h4>
+        return (
+          <h4 key={i} style={style}>
+            {serialize(node?.children)}
+          </h4>
+        )
       case 'h5':
-        return <h5 key={i}>{serialize(node?.children)}</h5>
+        return (
+          <h5 key={i} style={style}>
+            {serialize(node?.children)}
+          </h5>
+        )
       case 'h6':
-        return <h6 key={i}>{serialize(node?.children)}</h6>
+        return (
+          <h6 key={i} style={style}>
+            {serialize(node?.children)}
+          </h6>
+        )
       case 'quote':
-        return <blockquote key={i}>{serialize(node?.children)}</blockquote>
+        return (
+          <blockquote key={i} style={style}>
+            {serialize(node?.children)}
+          </blockquote>
+        )
       case 'ul':
-        return <ul key={i}>{serialize(node?.children)}</ul>
+        return (
+          <ul key={i} style={style}>
+            {serialize(node?.children)}
+          </ul>
+        )
       case 'ol':
-        return <ol key={i}>{serialize(node.children)}</ol>
+        return (
+          <ol key={i} style={style}>
+            {serialize(node.children)}
+          </ol>
+        )
       case 'li':
-        return <li key={i}>{serialize(node.children)}</li>
+        return (
+          <li key={i} style={style}>
+            {serialize(node.children)}
+          </li>
+        )
       case 'link':
         return (
           <CMSLink
@@ -98,12 +142,15 @@ const serialize = (children?: Children): React.ReactNode[] =>
       case 'label':
         return <Label key={i}>{serialize(node?.children)}</Label>
 
-      case 'large-body': {
+      case 'large-body':
         return <LargeBody key={i}>{serialize(node?.children)}</LargeBody>
-      }
 
       default:
-        return <p key={i}>{serialize(node?.children)}</p>
+        return (
+          <p key={i} style={style}>
+            {serialize(node?.children)}
+          </p>
+        )
     }
   }) || []
 
