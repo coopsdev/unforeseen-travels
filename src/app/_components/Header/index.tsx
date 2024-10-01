@@ -25,6 +25,9 @@ export async function Header() {
     // console.error(error)
   }
 
+  if (!header || (!header.navItems.length && !header.socialIcons.length))
+    return <div style={{ display: 'none' }}></div>
+
   return (
     <>
       <header className={classes.header}>
