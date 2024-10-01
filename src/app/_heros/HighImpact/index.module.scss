@@ -4,7 +4,6 @@
   padding-top: calc(var(--base) * 2);
   overflow: hidden;
   height: fit-content;
-  min-height: 500px;
   background-size: cover;
 
   @include mid-break {
@@ -20,6 +19,9 @@
   }
 
   & h4 {
+    color: #f7f7f7;
+  }
+  & h5 {
     color: #f7f7f7;
   }
 }
