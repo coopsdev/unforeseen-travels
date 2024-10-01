@@ -26,9 +26,9 @@ export const colorPicker: colorFieldOptions = ({ overrides = {} } = {}) => {
 
   // Handle 'name' override explicitly
   if (overrides.name) {
-    colorField.name = overrides.name as string;
-    delete overrides.name; // Remove name from overrides to avoid conflicts in deepMerge
+    colorField.name = overrides.name as string
+    delete overrides.name // Remove name from overrides to avoid conflicts in deepMerge
   }
 
-  return deepMerge(colorField, overrides);
+  return deepMerge(colorField, overrides)
 }
