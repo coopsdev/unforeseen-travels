@@ -9,11 +9,12 @@ import { Label, useFieldType } from 'payload/components/forms'
 import { usePreferences } from 'payload/components/preferences'
 import Error from 'payload/dist/admin/components/forms/Error/index'
 
-// we'll import and reuse our existing validator function on the frontend, too
-import { validateHexColor } from '../index'
-
 // Import the SCSS stylesheet
 import '../index.module.scss'
+
+export const validateHexColor = (value = ''): true | string => {
+  return value.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/) !== null || `Please give a valid hex color`
+}
 
 // keep a list of default colors to choose from
 const defaultColors = ['#333333', '#9A9A9A', '#F3F3F3', '#FF6F76', '#FDFFA4', '#B2FFD6', '#F3DDF3']

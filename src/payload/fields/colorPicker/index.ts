@@ -2,11 +2,7 @@ import type { Field } from 'payload/types'
 
 import deepMerge from '../../utilities/deepMerge'
 import Cell from './cell'
-import InputField from './component'
-
-export const validateHexColor = (value = ''): true | string => {
-  return value.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/) !== null || `Please give a valid hex color`
-}
+import InputField, { validateHexColor } from './component'
 
 type colorFieldOptions = (options?: { overrides?: Record<string, unknown> }) => Field
 

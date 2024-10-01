@@ -10,7 +10,12 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ richText, media, links 
   if (typeof media === 'number') return <div>Failed to render image...</div>
 
   return (
-    <div className={classes.hero} style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_URL}/media/${media.filename})` }}>
+    <div
+      className={classes.hero}
+      style={{
+        backgroundImage: `url(${process.env.NEXT_PUBLIC_SERVER_URL}/media/${media.filename})`,
+      }}
+    >
       <div className={classes.content}>
         <RichText content={richText} />
         {Array.isArray(links) && links.length > 0 && (
