@@ -21,6 +21,7 @@ const InfoBar = React.memo(({ location, rating }: { location: string; rating: nu
       emptyColor="lightgray"
       allowFraction
       allowHover={false}
+      readonly={true}
       size={25}
     />
   </div>

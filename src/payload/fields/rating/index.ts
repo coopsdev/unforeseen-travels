@@ -11,6 +11,7 @@ export const rating: InlineMediaType = ({ overrides = {} } = {}) => {
     type: 'number',
     label: 'Rating',
     required: true,
+    defaultValue: 5,
     admin: {
       components: {
         Field: StarRatingField,

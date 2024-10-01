@@ -35,11 +35,6 @@ export async function Header() {
               And so `@media (prefers-color-scheme: dark)` will not work
               Instead, we just use CSS to invert the color via `filter: invert(1)` based on `[data-theme="dark"]`
             */}
-            <img
-              className={classes.logo}
-              alt="Cooper Larson's logo"
-              src="https://res.cloudinary.com/ddddyraui/image/upload/cl-logo_e5nuxu.png"
-            />
           </Link>
           <div className={classes.navLinks}>
             <HeaderSocial header={header} />
