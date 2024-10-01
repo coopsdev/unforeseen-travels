@@ -58,7 +58,7 @@ const MediaComponent = React.memo(
 )
 
 export const ReferenceHero: React.FC<{ reference: Reference }> = ({ reference }) => {
-  const { title, location, review, media, richText, rating } = reference
+  const { title, location, review, media, rating } = reference
   const isMedia = media && typeof media !== 'number'
   const isLandscape = isMedia && media?.width > media?.height
 
