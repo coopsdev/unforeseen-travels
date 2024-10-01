@@ -34,13 +34,6 @@ export const References: CollectionConfig = {
   },
   fields: [
     {
-      name: 'publishedAt',
-      type: 'date',
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
       name: 'title',
       type: 'text',
       required: true,
@@ -95,6 +88,8 @@ export const References: CollectionConfig = {
         }),
       ],
     },
-    slugField('title'),
+    slugField('title', {
+      hidden: true,
+    }),
   ],
 }

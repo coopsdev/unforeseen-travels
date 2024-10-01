@@ -477,7 +477,6 @@ export interface User {
  */
 export interface Reference {
   id: number;
-  publishedAt?: string | null;
   title: string;
   references: {
     location?: string | null;

@@ -3322,7 +3322,6 @@ input versionsPage_where_or {
 
 type Reference {
   id: Int
-  publishedAt: DateTime
   title: String
   references: [Reference_References!]!
   slug: String
@@ -3549,7 +3548,6 @@ type References {
 }
 
 input Reference_where {
-  publishedAt: Reference_publishedAt_operator
   title: Reference_title_operator
   references__location: Reference_references__location_operator
   references__date: Reference_references__date_operator
@@ -3558,24 +3556,12 @@ input Reference_where {
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
   references__id: Reference_references__id_operator
-  slug: Reference_slug_operator
   updatedAt: Reference_updatedAt_operator
   createdAt: Reference_createdAt_operator
   _status: Reference__status_operator
   id: Reference_id_operator
   AND: [Reference_where_and]
   OR: [Reference_where_or]
-}
-
-input Reference_publishedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
-  exists: Boolean
 }
 
 input Reference_title_operator {
@@ -3654,17 +3640,6 @@ input Reference_references__id_operator {
   exists: Boolean
 }
 
-input Reference_slug_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
-  exists: Boolean
-}
-
 input Reference_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -3712,7 +3687,6 @@ input Reference_id_operator {
 }
 
 input Reference_where_and {
-  publishedAt: Reference_publishedAt_operator
   title: Reference_title_operator
   references__location: Reference_references__location_operator
   references__date: Reference_references__date_operator
@@ -3721,7 +3695,6 @@ input Reference_where_and {
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
   references__id: Reference_references__id_operator
-  slug: Reference_slug_operator
   updatedAt: Reference_updatedAt_operator
   createdAt: Reference_createdAt_operator
   _status: Reference__status_operator
@@ -3731,7 +3704,6 @@ input Reference_where_and {
 }
 
 input Reference_where_or {
-  publishedAt: Reference_publishedAt_operator
   title: Reference_title_operator
   references__location: Reference_references__location_operator
   references__date: Reference_references__date_operator
@@ -3740,7 +3712,6 @@ input Reference_where_or {
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
   references__id: Reference_references__id_operator
-  slug: Reference_slug_operator
   updatedAt: Reference_updatedAt_operator
   createdAt: Reference_createdAt_operator
   _status: Reference__status_operator
@@ -3763,36 +3734,11 @@ type referencesDocAccess {
 }
 
 type ReferencesDocAccessFields {
-  publishedAt: ReferencesDocAccessFields_publishedAt
   title: ReferencesDocAccessFields_title
   references: ReferencesDocAccessFields_references
-  slug: ReferencesDocAccessFields_slug
   updatedAt: ReferencesDocAccessFields_updatedAt
   createdAt: ReferencesDocAccessFields_createdAt
   _status: ReferencesDocAccessFields__status
-}
-
-type ReferencesDocAccessFields_publishedAt {
-  create: ReferencesDocAccessFields_publishedAt_Create
-  read: ReferencesDocAccessFields_publishedAt_Read
-  update: ReferencesDocAccessFields_publishedAt_Update
-  delete: ReferencesDocAccessFields_publishedAt_Delete
-}
-
-type ReferencesDocAccessFields_publishedAt_Create {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_publishedAt_Read {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_publishedAt_Update {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_publishedAt_Delete {
-  permission: Boolean!
 }
 
 type ReferencesDocAccessFields_title {
@@ -4013,29 +3959,6 @@ type ReferencesDocAccessFields_references_id_Delete {
   permission: Boolean!
 }
 
-type ReferencesDocAccessFields_slug {
-  create: ReferencesDocAccessFields_slug_Create
-  read: ReferencesDocAccessFields_slug_Read
-  update: ReferencesDocAccessFields_slug_Update
-  delete: ReferencesDocAccessFields_slug_Delete
-}
-
-type ReferencesDocAccessFields_slug_Create {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_slug_Read {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_slug_Update {
-  permission: Boolean!
-}
-
-type ReferencesDocAccessFields_slug_Delete {
-  permission: Boolean!
-}
-
 type ReferencesDocAccessFields_updatedAt {
   create: ReferencesDocAccessFields_updatedAt_Create
   read: ReferencesDocAccessFields_updatedAt_Read
@@ -4140,7 +4063,6 @@ type ReferenceVersion {
 }
 
 type ReferenceVersion_Version {
-  publishedAt: DateTime
   title: String
   references: [ReferenceVersion_Version_References!]!
   slug: String
@@ -4368,7 +4290,6 @@ type versionsReferences {
 
 input versionsReference_where {
   parent: versionsReference_parent_operator
-  version__publishedAt: versionsReference_version__publishedAt_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
   version__references__date: versionsReference_version__references__date_operator
@@ -4395,17 +4316,6 @@ input versionsReference_parent_operator {
   in: [JSON]
   not_in: [JSON]
   all: [JSON]
-  exists: Boolean
-}
-
-input versionsReference_version__publishedAt_operator {
-  equals: DateTime
-  not_equals: DateTime
-  greater_than_equal: DateTime
-  greater_than: DateTime
-  less_than_equal: DateTime
-  less_than: DateTime
-  like: DateTime
   exists: Boolean
 }
 
@@ -4572,7 +4482,6 @@ input versionsReference_id_operator {
 
 input versionsReference_where_and {
   parent: versionsReference_parent_operator
-  version__publishedAt: versionsReference_version__publishedAt_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
   version__references__date: versionsReference_version__references__date_operator
@@ -4595,7 +4504,6 @@ input versionsReference_where_and {
 
 input versionsReference_where_or {
   parent: versionsReference_parent_operator
-  version__publishedAt: versionsReference_version__publishedAt_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
   version__references__date: versionsReference_version__references__date_operator
@@ -10882,36 +10790,11 @@ type referencesAccess {
 }
 
 type ReferencesFields {
-  publishedAt: ReferencesFields_publishedAt
   title: ReferencesFields_title
   references: ReferencesFields_references
-  slug: ReferencesFields_slug
   updatedAt: ReferencesFields_updatedAt
   createdAt: ReferencesFields_createdAt
   _status: ReferencesFields__status
-}
-
-type ReferencesFields_publishedAt {
-  create: ReferencesFields_publishedAt_Create
-  read: ReferencesFields_publishedAt_Read
-  update: ReferencesFields_publishedAt_Update
-  delete: ReferencesFields_publishedAt_Delete
-}
-
-type ReferencesFields_publishedAt_Create {
-  permission: Boolean!
-}
-
-type ReferencesFields_publishedAt_Read {
-  permission: Boolean!
-}
-
-type ReferencesFields_publishedAt_Update {
-  permission: Boolean!
-}
-
-type ReferencesFields_publishedAt_Delete {
-  permission: Boolean!
 }
 
 type ReferencesFields_title {
@@ -11129,29 +11012,6 @@ type ReferencesFields_references_id_Update {
 }
 
 type ReferencesFields_references_id_Delete {
-  permission: Boolean!
-}
-
-type ReferencesFields_slug {
-  create: ReferencesFields_slug_Create
-  read: ReferencesFields_slug_Read
-  update: ReferencesFields_slug_Update
-  delete: ReferencesFields_slug_Delete
-}
-
-type ReferencesFields_slug_Create {
-  permission: Boolean!
-}
-
-type ReferencesFields_slug_Read {
-  permission: Boolean!
-}
-
-type ReferencesFields_slug_Update {
-  permission: Boolean!
-}
-
-type ReferencesFields_slug_Delete {
   permission: Boolean!
 }
 
@@ -14486,7 +14346,6 @@ enum PageUpdate__status_MutationInput {
 }
 
 input mutationReferenceInput {
-  publishedAt: String
   title: String!
   references: [mutationReference_ReferencesInput!]
   slug: String
@@ -14511,7 +14370,6 @@ enum Reference__status_MutationInput {
 }
 
 input mutationReferenceUpdateInput {
-  publishedAt: String
   title: String
   references: [mutationReferenceUpdate_ReferencesInput]
   slug: String
