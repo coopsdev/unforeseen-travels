@@ -10,24 +10,47 @@ import RichText from '../../_components/RichText'
 
 import classes from './index.module.scss'
 
-// Memoized InfoBar component
-const InfoBar = React.memo(({ location, rating }: { location: string; rating: number }) => (
-  <div className={classes.infoBar}>
-    <h5 className={classes.location}>{location}</h5>
-    <Rating
-      className={classes.rating}
-      initialValue={rating}
-      fillColor="gold"
-      emptyColor="lightgray"
-      allowFraction
-      allowHover={false}
-      readonly={true}
-      size={25}
-    />
-  </div>
-))
+interface InfoBarProps {
+  location?: string
+  rating: number
+  date?: string
+  pets?: string
+}
 
-// Memoized MediaComponent
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+}
+
+const InfoBar = React.memo((props: InfoBarProps) => {
+  const { location, rating, date, pets } = props
+  return (
+    <div className={classes.infoBar}>
+      <div className={classes.row}>
+        <div className={classes.infoBarLeft}>
+          <h5 className={classes.location}>{location}</h5>
+          <Rating
+            className={classes.rating}
+            initialValue={rating}
+            fillColor="gold"
+            emptyColor="lightgray"
+            allowFraction
+            allowHover={false}
+            readonly={true}
+            size={25}
+          />
+        </div>
+        {pets && (
+          <h5 className={classes.pets}>
+            <span className={classes.petsPrefix}>Pets:</span> {pets}
+          </h5>
+        )}
+        {date && <h5 className={classes.date}>{formatDate(date)}</h5>}
+      </div>
+    </div>
+  )
+})
+
 const MediaComponent = React.memo(
   ({ media, isLandscape }: { media: any; isLandscape: boolean }) => {
     if (!media) return <div>Media is undefined</div>
@@ -54,7 +77,6 @@ const Body: React.FC<{ media: MediaType | number; review: any }> = ({ media, rev
   const [isBottomReached, setIsBottomReached] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
-  // Function to check if content is overflowing
   const checkOverflow = () => {
     const reviewElement = reviewRef.current
     if (reviewElement) {
@@ -62,7 +84,6 @@ const Body: React.FC<{ media: MediaType | number; review: any }> = ({ media, rev
     }
   }
 
-  // Debounced scroll handler to hide arrow when scrolling down
   const handleScroll = debounce(() => {
     const reviewElement = reviewRef.current
     if (reviewElement) {
@@ -89,13 +110,12 @@ const Body: React.FC<{ media: MediaType | number; review: any }> = ({ media, rev
       }
       window.removeEventListener('resize', checkOverflow)
     }
-  }, [])
+  }, [handleScroll])
 
   return (
     <div className={`${classes.body} ${isLandscape ? '' : classes.portraitBody}`}>
       <div className={classes.review} ref={reviewRef}>
         <RichText className={classes.reviewText} content={review} />
-        {/* Conditionally render the scroll down arrow if content overflows and not at the bottom */}
         {isOverflowing && !isBottomReached && <div className={classes.scrollDownArrow}>↓</div>}
       </div>
       <MediaComponent media={media} isLandscape={isLandscape} />
@@ -109,7 +129,6 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(0)
 
-  // Calculate height of the reference section to adjust the bridge length
   useEffect(() => {
     if (containerRef.current && references.length > 1) {
       setContainerHeight(containerRef.current.offsetHeight)
@@ -120,7 +139,6 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
     <div className={classes.referenceHero}>
       <h1 className={classes.title}>{title}</h1>
 
-      {/* Conditionally render the references and bridge only if more than one reference */}
       {references.length > 1 && (
         <>
           <div className={classes.bridge} style={{ height: `${containerHeight}px` }}></div>
@@ -142,10 +160,9 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
         </>
       )}
 
-      {/* If only one reference, no bridge or special alignment */}
       {references.length === 1 && (
         <div className={classes.referenceContainer}>
-          <InfoBar location={references[0].location} rating={references[0].rating} />
+          <InfoBar {...references[0]} />
           <Body review={references[0].review} media={references[0].media} />
         </div>
       )}
