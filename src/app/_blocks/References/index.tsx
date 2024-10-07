@@ -23,7 +23,9 @@ const calculateExtremeDate = references => {
   return new Date(Math.min(...dates.map(date => date.getTime())))
 }
 
-export const ReferencesBlock: React.FC<{ id?: string }> = ({ id }) => {
+export const ReferencesBlock: React.FC<{ id?: string; blockType?: 'referencesBlock' }> = ({
+  id,
+}) => {
   const [references, setReferences] = useState([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
