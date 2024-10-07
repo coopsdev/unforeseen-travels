@@ -1,11 +1,11 @@
 import { MEDIA } from './media'
 
 export const REFERENCES = `
-  query References {
-    References(limit: 500) {
+  query References($limit: Int, $sort: String) {
+    References(limit: $limit, sort: $sort) {
       docs {
-        slug
         id
+        slug
         title
         references {
           location
