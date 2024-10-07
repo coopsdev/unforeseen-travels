@@ -57,9 +57,7 @@ const InfoBar = React.memo((props: InfoBarProps) => {
             <span className={classes.petsPrefix}>Pets:</span> {pets}
           </h5>
         )}
-        {date && (
-          <h5 className={classes.date}>{formatDateRange(date, endDate)}</h5>
-        )}
+        {date && <h5 className={classes.date}>{formatDateRange(date, endDate)}</h5>}
       </div>
     </div>
   )
