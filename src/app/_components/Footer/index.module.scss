@@ -17,11 +17,28 @@
   }
 }
 
+.brand {
+  font-size: 24px;
+  text-decoration: none;
+  font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
 .copyright {
   font-size: 16px;
   text-align: center;
   position: relative;
   bottom: -20px;
+}
+
+.designedBy {
+  font-size: 14px;
+  text-align: center;
+  color: #d3d2d2;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .wrap {

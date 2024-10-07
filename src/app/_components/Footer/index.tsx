@@ -26,14 +26,8 @@ export async function Footer() {
   return (
     <footer className={classes.footer}>
       <Gutter className={classes.wrap}>
-        <Link href="/">
-          <picture>
-            <img
-              className={classes.logo}
-              alt="Cooper Larson's Logo"
-              src="https://res.cloudinary.com/ddddyraui/image/upload/cl-logo_e5nuxu.png"
-            />
-          </picture>
+        <Link href="/" className={classes.brand}>
+          Unforeseen Travels
         </Link>
         <nav className={classes.nav}>
           <ThemeSelector />
@@ -43,8 +37,12 @@ export async function Footer() {
         </nav>
       </Gutter>
       <h6 className={classes.copyright}>
-        {`Cooper Larson © ${new Date().getFullYear()} All Rights Reserved.`}
+        {`John & Susan Greet © ${new Date().getFullYear()} All Rights Reserved.`}
       </h6>
+      <div className={classes.designedBy}>
+        <span style={{ fontStyle: 'italic' }}>Designed by: </span>
+        <a href="https://cooperhlarson.com">Cooper Larson</a>
+      </div>
     </footer>
   )
 }
