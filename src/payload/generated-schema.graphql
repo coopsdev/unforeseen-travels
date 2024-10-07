@@ -3332,8 +3332,9 @@ type Reference {
 
 type Reference_References {
   location: String
-  date: DateTime
   pets: String
+  date: DateTime
+  endDate: DateTime
   rating: Float!
   media(where: Reference_References_Media_where): Media
   review(depth: Int): JSON!
@@ -3550,8 +3551,9 @@ type References {
 input Reference_where {
   title: Reference_title_operator
   references__location: Reference_references__location_operator
-  references__date: Reference_references__date_operator
   references__pets: Reference_references__pets_operator
+  references__date: Reference_references__date_operator
+  references__endDate: Reference_references__endDate_operator
   references__rating: Reference_references__rating_operator
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
@@ -3585,6 +3587,17 @@ input Reference_references__location_operator {
   exists: Boolean
 }
 
+input Reference_references__pets_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input Reference_references__date_operator {
   equals: DateTime
   not_equals: DateTime
@@ -3596,14 +3609,14 @@ input Reference_references__date_operator {
   exists: Boolean
 }
 
-input Reference_references__pets_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input Reference_references__endDate_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
   exists: Boolean
 }
 
@@ -3689,8 +3702,9 @@ input Reference_id_operator {
 input Reference_where_and {
   title: Reference_title_operator
   references__location: Reference_references__location_operator
-  references__date: Reference_references__date_operator
   references__pets: Reference_references__pets_operator
+  references__date: Reference_references__date_operator
+  references__endDate: Reference_references__endDate_operator
   references__rating: Reference_references__rating_operator
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
@@ -3706,8 +3720,9 @@ input Reference_where_and {
 input Reference_where_or {
   title: Reference_title_operator
   references__location: Reference_references__location_operator
-  references__date: Reference_references__date_operator
   references__pets: Reference_references__pets_operator
+  references__date: Reference_references__date_operator
+  references__endDate: Reference_references__endDate_operator
   references__rating: Reference_references__rating_operator
   references__media: Reference_references__media_operator
   references__review: Reference_references__review_operator
@@ -3790,8 +3805,9 @@ type ReferencesDocAccessFields_references_Delete {
 
 type ReferencesDocAccessFields_references_Fields {
   location: ReferencesDocAccessFields_references_location
-  date: ReferencesDocAccessFields_references_date
   pets: ReferencesDocAccessFields_references_pets
+  date: ReferencesDocAccessFields_references_date
+  endDate: ReferencesDocAccessFields_references_endDate
   rating: ReferencesDocAccessFields_references_rating
   media: ReferencesDocAccessFields_references_media
   review: ReferencesDocAccessFields_references_review
@@ -3821,6 +3837,29 @@ type ReferencesDocAccessFields_references_location_Delete {
   permission: Boolean!
 }
 
+type ReferencesDocAccessFields_references_pets {
+  create: ReferencesDocAccessFields_references_pets_Create
+  read: ReferencesDocAccessFields_references_pets_Read
+  update: ReferencesDocAccessFields_references_pets_Update
+  delete: ReferencesDocAccessFields_references_pets_Delete
+}
+
+type ReferencesDocAccessFields_references_pets_Create {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_references_pets_Read {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_references_pets_Update {
+  permission: Boolean!
+}
+
+type ReferencesDocAccessFields_references_pets_Delete {
+  permission: Boolean!
+}
+
 type ReferencesDocAccessFields_references_date {
   create: ReferencesDocAccessFields_references_date_Create
   read: ReferencesDocAccessFields_references_date_Read
@@ -3844,26 +3883,26 @@ type ReferencesDocAccessFields_references_date_Delete {
   permission: Boolean!
 }
 
-type ReferencesDocAccessFields_references_pets {
-  create: ReferencesDocAccessFields_references_pets_Create
-  read: ReferencesDocAccessFields_references_pets_Read
-  update: ReferencesDocAccessFields_references_pets_Update
-  delete: ReferencesDocAccessFields_references_pets_Delete
+type ReferencesDocAccessFields_references_endDate {
+  create: ReferencesDocAccessFields_references_endDate_Create
+  read: ReferencesDocAccessFields_references_endDate_Read
+  update: ReferencesDocAccessFields_references_endDate_Update
+  delete: ReferencesDocAccessFields_references_endDate_Delete
 }
 
-type ReferencesDocAccessFields_references_pets_Create {
+type ReferencesDocAccessFields_references_endDate_Create {
   permission: Boolean!
 }
 
-type ReferencesDocAccessFields_references_pets_Read {
+type ReferencesDocAccessFields_references_endDate_Read {
   permission: Boolean!
 }
 
-type ReferencesDocAccessFields_references_pets_Update {
+type ReferencesDocAccessFields_references_endDate_Update {
   permission: Boolean!
 }
 
-type ReferencesDocAccessFields_references_pets_Delete {
+type ReferencesDocAccessFields_references_endDate_Delete {
   permission: Boolean!
 }
 
@@ -4073,8 +4112,9 @@ type ReferenceVersion_Version {
 
 type ReferenceVersion_Version_References {
   location: String
-  date: DateTime
   pets: String
+  date: DateTime
+  endDate: DateTime
   rating: Float!
   media(where: ReferenceVersion_Version_References_Media_where): Media
   review(depth: Int): JSON!
@@ -4292,8 +4332,9 @@ input versionsReference_where {
   parent: versionsReference_parent_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
-  version__references__date: versionsReference_version__references__date_operator
   version__references__pets: versionsReference_version__references__pets_operator
+  version__references__date: versionsReference_version__references__date_operator
+  version__references__endDate: versionsReference_version__references__endDate_operator
   version__references__rating: versionsReference_version__references__rating_operator
   version__references__media: versionsReference_version__references__media_operator
   version__references__review: versionsReference_version__references__review_operator
@@ -4340,6 +4381,17 @@ input versionsReference_version__references__location_operator {
   exists: Boolean
 }
 
+input versionsReference_version__references__pets_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
 input versionsReference_version__references__date_operator {
   equals: DateTime
   not_equals: DateTime
@@ -4351,14 +4403,14 @@ input versionsReference_version__references__date_operator {
   exists: Boolean
 }
 
-input versionsReference_version__references__pets_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+input versionsReference_version__references__endDate_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
   exists: Boolean
 }
 
@@ -4484,8 +4536,9 @@ input versionsReference_where_and {
   parent: versionsReference_parent_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
-  version__references__date: versionsReference_version__references__date_operator
   version__references__pets: versionsReference_version__references__pets_operator
+  version__references__date: versionsReference_version__references__date_operator
+  version__references__endDate: versionsReference_version__references__endDate_operator
   version__references__rating: versionsReference_version__references__rating_operator
   version__references__media: versionsReference_version__references__media_operator
   version__references__review: versionsReference_version__references__review_operator
@@ -4506,8 +4559,9 @@ input versionsReference_where_or {
   parent: versionsReference_parent_operator
   version__title: versionsReference_version__title_operator
   version__references__location: versionsReference_version__references__location_operator
-  version__references__date: versionsReference_version__references__date_operator
   version__references__pets: versionsReference_version__references__pets_operator
+  version__references__date: versionsReference_version__references__date_operator
+  version__references__endDate: versionsReference_version__references__endDate_operator
   version__references__rating: versionsReference_version__references__rating_operator
   version__references__media: versionsReference_version__references__media_operator
   version__references__review: versionsReference_version__references__review_operator
@@ -10846,8 +10900,9 @@ type ReferencesFields_references_Delete {
 
 type ReferencesFields_references_Fields {
   location: ReferencesFields_references_location
-  date: ReferencesFields_references_date
   pets: ReferencesFields_references_pets
+  date: ReferencesFields_references_date
+  endDate: ReferencesFields_references_endDate
   rating: ReferencesFields_references_rating
   media: ReferencesFields_references_media
   review: ReferencesFields_references_review
@@ -10877,6 +10932,29 @@ type ReferencesFields_references_location_Delete {
   permission: Boolean!
 }
 
+type ReferencesFields_references_pets {
+  create: ReferencesFields_references_pets_Create
+  read: ReferencesFields_references_pets_Read
+  update: ReferencesFields_references_pets_Update
+  delete: ReferencesFields_references_pets_Delete
+}
+
+type ReferencesFields_references_pets_Create {
+  permission: Boolean!
+}
+
+type ReferencesFields_references_pets_Read {
+  permission: Boolean!
+}
+
+type ReferencesFields_references_pets_Update {
+  permission: Boolean!
+}
+
+type ReferencesFields_references_pets_Delete {
+  permission: Boolean!
+}
+
 type ReferencesFields_references_date {
   create: ReferencesFields_references_date_Create
   read: ReferencesFields_references_date_Read
@@ -10900,26 +10978,26 @@ type ReferencesFields_references_date_Delete {
   permission: Boolean!
 }
 
-type ReferencesFields_references_pets {
-  create: ReferencesFields_references_pets_Create
-  read: ReferencesFields_references_pets_Read
-  update: ReferencesFields_references_pets_Update
-  delete: ReferencesFields_references_pets_Delete
+type ReferencesFields_references_endDate {
+  create: ReferencesFields_references_endDate_Create
+  read: ReferencesFields_references_endDate_Read
+  update: ReferencesFields_references_endDate_Update
+  delete: ReferencesFields_references_endDate_Delete
 }
 
-type ReferencesFields_references_pets_Create {
+type ReferencesFields_references_endDate_Create {
   permission: Boolean!
 }
 
-type ReferencesFields_references_pets_Read {
+type ReferencesFields_references_endDate_Read {
   permission: Boolean!
 }
 
-type ReferencesFields_references_pets_Update {
+type ReferencesFields_references_endDate_Update {
   permission: Boolean!
 }
 
-type ReferencesFields_references_pets_Delete {
+type ReferencesFields_references_endDate_Delete {
   permission: Boolean!
 }
 
@@ -14356,8 +14434,9 @@ input mutationReferenceInput {
 
 input mutationReference_ReferencesInput {
   location: String
-  date: String
   pets: String
+  date: String
+  endDate: String
   rating: Float!
   media: String
   review: JSON!
@@ -14380,8 +14459,9 @@ input mutationReferenceUpdateInput {
 
 input mutationReferenceUpdate_ReferencesInput {
   location: String
-  date: String
   pets: String
+  date: String
+  endDate: String
   rating: Float!
   media: String
   review: JSON!

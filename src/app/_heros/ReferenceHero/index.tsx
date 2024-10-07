@@ -14,6 +14,7 @@ interface InfoBarProps {
   location?: string
   rating: number
   date?: string
+  endDate?: string
   pets?: string
 }
 
@@ -23,7 +24,18 @@ const formatDate = (dateString: string) => {
 }
 
 const InfoBar = React.memo((props: InfoBarProps) => {
-  const { location, rating, date, pets } = props
+  const { location, rating, date, endDate, pets } = props
+
+  const formatDateRange = (startDate?: string, endDate?: string) => {
+    if (startDate && endDate) {
+      return `${formatDate(startDate)} - ${formatDate(endDate)}`
+    }
+    if (startDate) {
+      return formatDate(startDate)
+    }
+    return ''
+  }
+
   return (
     <div className={classes.infoBar}>
       <div className={classes.row}>
@@ -45,7 +57,9 @@ const InfoBar = React.memo((props: InfoBarProps) => {
             <span className={classes.petsPrefix}>Pets:</span> {pets}
           </h5>
         )}
-        {date && <h5 className={classes.date}>{formatDate(date)}</h5>}
+        {date && (
+          <h5 className={classes.date}>{formatDateRange(date, endDate)}</h5>
+        )}
       </div>
     </div>
   )

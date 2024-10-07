@@ -480,8 +480,9 @@ export interface Reference {
   title: string;
   references: {
     location?: string | null;
-    date?: string | null;
     pets?: string | null;
+    date?: string | null;
+    endDate?: string | null;
     rating: number;
     media?: number | Media | null;
     review: {
