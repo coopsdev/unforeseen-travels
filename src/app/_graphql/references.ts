@@ -10,6 +10,7 @@ export const REFERENCES = `
         references {
           location
           date
+          endDate
           pets
           rating
           ${MEDIA}
@@ -29,6 +30,7 @@ export const REFERENCE = `
         references {
           location
           date
+          endDate
           pets
           rating
           ${MEDIA}

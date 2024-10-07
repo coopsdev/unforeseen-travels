@@ -135,6 +135,8 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
     }
   }, [references])
 
+  const RenderInfoBar = () => <InfoBar {...references[0]} />
+
   return (
     <div className={classes.referenceHero}>
       <h1 className={classes.title}>{title}</h1>
@@ -151,7 +153,7 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
                 }`}
               >
                 <div className={classes.referenceContent}>
-                  <InfoBar location={ref.location} rating={ref.rating} />
+                  <RenderInfoBar />
                   <Body review={ref.review} media={ref.media} />
                 </div>
               </div>
@@ -162,7 +164,7 @@ export const ReferenceHero: React.FC<{ reference: Reference }> = ({
 
       {references.length === 1 && (
         <div className={classes.referenceContainer}>
-          <InfoBar {...references[0]} />
+          <RenderInfoBar />
           <Body review={references[0].review} media={references[0].media} />
         </div>
       )}

@@ -11,7 +11,7 @@ body {
 }
 
 .nav-group__toggle {
-  color: #c0c0c0;
+  color: #c0c0c0
 }
 
 .react-datepicker {
@@ -19,9 +19,8 @@ body {
   position: relative;
   top: 50px;
   left: 44px;
-}
-.react-datepicker button {
-  scale: 200%;
-}
 
-/*# sourceMappingURL=admin.css.map */
+  button {
+    scale: 200%;
+  }
+}

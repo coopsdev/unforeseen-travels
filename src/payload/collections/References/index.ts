@@ -52,8 +52,19 @@ export const References: CollectionConfig = {
               type: 'text',
             },
             {
+              name: 'pets',
+              label: 'Pets',
+              required: false,
+              type: 'text',
+            },
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
               name: 'date',
-              label: 'Date (Month, Year)',
+              label: 'Begin Date',
               type: 'date',
               admin: {
                 date: {
@@ -62,16 +73,20 @@ export const References: CollectionConfig = {
                 },
               },
             },
-          ],
-        },
-        {
-          type: 'row',
-          fields: [
             {
-              name: 'pets',
-              label: 'Pets',
-              required: false,
-              type: 'text',
+              name: 'endDate',
+              label: 'End Date (optional for multi-month sits)',
+              type: 'date',
+              admin: {
+                date: {
+                  pickerAppearance: 'monthOnly',
+                  displayFormat: 'MMMM yyyy',
+                },
+                condition: (_, siblingData) => {
+                  const dateValue = siblingData?.date
+                  return dateValue && !isNaN(Date.parse(dateValue))
+                },
+              },
             },
             rating(),
           ],

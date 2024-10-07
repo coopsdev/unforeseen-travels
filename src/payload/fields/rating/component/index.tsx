@@ -2,6 +2,8 @@ import React from 'react'
 import { Rating } from 'react-simple-star-rating'
 import { useFieldType } from 'payload/components/forms'
 
+import classes from './index.module.scss'
+
 const StarRatingField: React.FC = (props: { path: string }) => {
   const {
     value = 0,
@@ -12,18 +14,18 @@ const StarRatingField: React.FC = (props: { path: string }) => {
     path: props.path,
   })
 
-  // Handle rating click
   const handleRating = (rate: number) => {
     setValue(rate)
   }
 
   return (
     typeof value === 'number' && (
-      <div className="star-rating-field">
+      <div className={classes.starRatingField}>
+        <p>Rating</p>
         <Rating
           onClick={handleRating}
           initialValue={value}
-          size={40}
+          size={48}
           fillColor="gold"
           emptyColor="lightgray"
           allowFraction
